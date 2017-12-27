@@ -7,7 +7,13 @@ class App {
   constructor() {
     this.builder = {};
   }
-  dispatch(file, action) {
+
+  /**
+   * 派发时间
+   * @param file
+   * @param event {load/unload}
+   */
+  dispatch(file, event) {
     const f = path.parse(file);
 
     let builder = null;
@@ -49,9 +55,15 @@ class App {
     }
 
     if (builder) {
-      builder[action](file);
+      builder[event](file);
     }
   }
+
+  /**
+   * 加载builder
+   * @param Builder
+   * @returns {App}
+   */
   resolveBuilder(Builder) {
     const builder = new Builder();
     this.builder[builder.name] = builder;
@@ -59,8 +71,9 @@ class App {
   }
 
   /**
-   * compile a file
+   * 编译文件
    * @param absFilePath
+   * @returns {Promise.<void>}
    */
   async compile(absFilePath) {
     const pathInfo = path.parse(absFilePath);
@@ -105,7 +118,7 @@ class App {
   }
 
   /**
-   * build project
+   * 构建项目
    * @returns {Promise.<void>}
    */
   async build() {
@@ -121,12 +134,17 @@ class App {
 
     await Promise.all(builders.map(builder => this.builder[builder].compile()));
   }
+
+  /**
+   * 开发项目
+   * @returns {Promise.<void>}
+   */
   async dev() {
     await this.build(); // build one first
 
     const r = path.relative(process.cwd(), CONFIG.paths.src);
 
-    const watcher = chokidar
+    chokidar
       .watch(r, {
         ignored: /((^|[\/\\])\..)|(___jb_tmp___$)|(log$)/
       })
