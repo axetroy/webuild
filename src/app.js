@@ -11,41 +11,40 @@ class App {
     const f = path.parse(file);
 
     let builder = null;
-    const builderMap = this.builder;
 
     switch (f.ext) {
       case '.js':
       case '.jsx':
       case '.ts':
       case '.tsx':
-        builder = builderMap['js'];
+        builder = this.builder['js'];
         break;
       case '.css':
       case '.scss':
       case '.less':
       case '.sass':
       case '.wxss':
-        builder = builderMap['css'];
+        builder = this.builder['css'];
         break;
       case '.xml':
       case '.wxml':
-        builder = builderMap['xml'];
+        builder = this.builder['xml'];
         break;
       case '.json':
-        builder = builderMap['file'];
+        builder = this.builder['file'];
         break;
       case '.yaml':
       case '.yml':
-        builder = builderMap['file'];
+        builder = this.builder['file'];
         break;
       case '.pmg':
       case '.jpg':
       case '.gif':
-        builder = builderMap['file'];
+        builder = this.builder['file'];
         break;
       default:
         if (f.ext) {
-          builder = builderMap['file'];
+          builder = this.builder['file'];
         }
     }
 
