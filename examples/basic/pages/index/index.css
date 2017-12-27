@@ -1,0 +1,32 @@
+view {
+  display: block;
+  overflow: hidden;
+}
+
+text {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item {
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.tab {
+  background: #80bd01;
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.title {
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

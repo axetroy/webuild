@@ -1,0 +1,19 @@
+language: node_js
+sudo: false
+
+os:
+  - linux
+
+node_js:
+  - '6.10.0'
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+script:
+  - echo "test success..."
+
+after_script:
+  - yarn run coverage

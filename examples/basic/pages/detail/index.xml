@@ -1,0 +1,40 @@
+<view class="root">
+  <view class="container">
+
+    <view class="post">
+      <view class="title">
+        <text class="h3">{{post.title}}</text>
+      </view>
+
+      <view>
+        <text class="meta">发布于 {{post.timeago}}</text>
+        <text class="meta">作者 {{post.author.loginname}}</text>
+        <text class="meta">{{post.visit_count}} 次浏览</text>
+        <text class="meta">来自 {{post.tag}}</text>
+      </view>
+
+      <view class="content">
+        <rich-text nodes="{{post.content}}"></rich-text>
+      </view>
+    </view>
+
+    <text>{{post.reply_count}} 条回复</text>
+
+    <view class="comments">
+      <view wx:for="{{post.replies}}" wx:key="index" class="comment">
+
+        <view class="row">
+          <view class="col-2">
+            <image style="width: 40px; height: 40px; border-radius: 6px;" lazy-load="true" mode="{{item.mode}}" src="{{item.author.avatar_url}}"></image>
+          </view>
+          <view class="col-10">
+            <rich-text nodes="{{item.content}}"></rich-text>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+</view>

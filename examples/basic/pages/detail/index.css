@@ -1,0 +1,45 @@
+.root {
+  background-color: #fff;
+}
+
+.container {
+  margin: 0 5px;
+  /*background-color: #e1e1e1;*/
+}
+
+.post{
+  margin-bottom: 1rem;
+}
+
+.title {
+  width: 100%;
+  font-weight: 700;
+  margin: 8px 0;
+  display: inline-block;
+  vertical-align: bottom;
+  background-color: #f3f3f3;
+}
+
+.title text {
+  font-size: 1.2rem;
+  width: 100%;
+  display: inline-block;
+}
+
+.meta{
+  font-size: 12px;
+  margin: 2px 2px;
+}
+
+.meta:before {
+  content: '•';
+}
+
+.comments{
+  margin-top: 0.5rem;
+}
+
+.comment{
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+}

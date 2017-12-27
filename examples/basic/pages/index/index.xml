@@ -1,0 +1,23 @@
+<view>
+
+  <view class="row">
+    <view class="col-10 offset-1">
+      <view wx:for="{{posts}}" wx:key="index" class="item">
+
+        <view class="row" data-postid="{{item.id}}" bindtap="goToDetail">
+          <view class="col-2">
+            <image style="width: 40px; height: 40px; border-radius: 6px;" lazy-load="true" mode="{{item.mode}}" src="{{item.author.avatar_url}}"></image>
+          </view>
+          <view class="col-10">
+            <text class="text">
+              <text class="tab">{{item.tag}}</text>
+              <text class="title">{{item.title}}</text>
+            </text>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+</view>
