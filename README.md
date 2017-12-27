@@ -25,7 +25,7 @@ npm intsall @axetroy/webuild  # TODO
 
 ## Contributing
 
-[Contributing Guid](https://github.com/axetroy/Github/blob/master/CONTRIBUTING.md)
+[Contributing Guide](https://github.com/axetroy/Github/blob/master/CONTRIBUTING.md)
 
 如果你觉得项目不错，不要吝啬你的star.
 
