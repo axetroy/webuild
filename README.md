@@ -1,11 +1,27 @@
-## Github Open Source Template
+## 舒适的小程序构建工具
 
 [![Build Status](https://travis-ci.org/axetroy/Github.svg?branch=master)](https://travis-ci.org/axetroy/Github)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
-## Usage
+工具欲在改善小程序的开发环境.
 
-Describe how to use it
+特性:
+
+- [x] 支持引入NPM模块
+- [x] 支持ES2015, ES2016, ES2017...
+- [x] 打包压缩, 生产环境下, 所有的文件会被打包, 压缩成一个文件. 极大节省空间
+- [ ] 基于AST, 压缩WXSS/WXML
+- [x] 原生开发方式, 目录结构与原生保持一直, 无入侵.
+
+**该项目为开发工具, 不是小程序框架**.
+
+> 在正开发阶段...
+
+## 如何使用
+
+```bash
+npm intsall @axetroy/webuild  # TODO
+```
 
 ## Contributing
 
