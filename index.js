@@ -1,7 +1,7 @@
 const path = require('path');
 const program = require('caporal');
 const pkg = require('./package.json');
-const { build, dev } = require('./src/build');
+const app = require('./src/app');
 const { getConfig } = require('./src/config');
 
 const p = program.version(pkg.version).description(pkg.description);
@@ -18,7 +18,7 @@ p
     CONFIG.paths.cwd = process.cwd();
     CONFIG.paths.src = path.join(CONFIG.paths.cwd, options.src);
     CONFIG.paths.dist = path.join(CONFIG.paths.cwd, options.output);
-    dev();
+    app.dev();
   });
 
 p
@@ -34,7 +34,8 @@ p
     CONFIG.paths.src = path.join(CONFIG.paths.cwd, options.src);
     CONFIG.paths.dist = path.join(CONFIG.paths.cwd, options.output);
 
-    build()
+    app
+      .build()
       .then(() => {
         console.log('build success!');
       })

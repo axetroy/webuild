@@ -6,6 +6,7 @@ const CONFIG = require('./config');
 class Builder {
   constructor() {
     this.files = {};
+    this.name = 'builder';
   }
 
   /**

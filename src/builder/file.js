@@ -3,6 +3,11 @@
  */
 const Builder = require('../Builder');
 
-class FileBuilder extends Builder {}
+class FileBuilder extends Builder {
+  constructor() {
+    super();
+    this.name = 'file';
+  }
+}
 
-module.exports = new FileBuilder();
+module.exports = FileBuilder;

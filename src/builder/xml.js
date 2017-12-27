@@ -11,6 +11,7 @@ const CONFIG = require('../config');
 class XmlBuilder extends Builder {
   constructor() {
     super();
+    this.name = 'xml';
   }
   async compile() {
     const files = Object.keys(this.files);
@@ -39,4 +40,4 @@ class XmlBuilder extends Builder {
   }
 }
 
-module.exports = new XmlBuilder();
+module.exports = XmlBuilder;

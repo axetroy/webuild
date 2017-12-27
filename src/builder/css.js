@@ -12,6 +12,7 @@ const CONFIG = require('../config');
 class CssBuilder extends Builder {
   constructor() {
     super();
+    this.name = 'css';
   }
   async compile() {
     const files = Object.keys(this.files);
@@ -48,4 +49,4 @@ class CssBuilder extends Builder {
   }
 }
 
-module.exports = new CssBuilder();
+module.exports = CssBuilder;

@@ -178,6 +178,7 @@ function getRelative(file) {
 class JsBuilder extends Builder {
   constructor() {
     super();
+    this.name = 'js';
   }
 
   /**
@@ -251,4 +252,4 @@ class JsBuilder extends Builder {
   }
 }
 
-module.exports = new JsBuilder();
+module.exports = JsBuilder;
