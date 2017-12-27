@@ -11,10 +11,10 @@ const path = require('path');
 const chokidar = require('chokidar');
 const debounce = require('lodash.debounce');
 
-const JsBuilder = require('./build-js');
-const XmlBuilder = require('./build-xml');
-const CssBuilder = require('./build-css');
-const FileBuilder = require('./build-file');
+const JsBuilder = require('./builder/js');
+const XmlBuilder = require('./builder/xml');
+const CssBuilder = require('./builder/css');
+const FileBuilder = require('./builder/file');
 
 const { query } = require('./utils');
 const CONFIG = require('./config');

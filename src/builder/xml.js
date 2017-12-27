@@ -5,8 +5,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 const pd = require('pretty-data').pd;
-const Builder = require('./Builder');
-const CONFIG = require('./config');
+const Builder = require('../Builder');
+const CONFIG = require('../config');
 
 class XmlBuilder extends Builder {
   constructor() {

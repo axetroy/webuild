@@ -5,10 +5,10 @@ const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs-extra');
 const babel = require('babel-core');
-const utils = require('./utils');
-const Builder = require('./Builder');
+const utils = require('../utils');
+const Builder = require('../Builder');
 
-const CONFIG = require('./config');
+const CONFIG = require('../config');
 
 // 输出文件
 const BUNDLE_FILENAME = 'm.js';
