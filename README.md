@@ -1,5 +1,7 @@
 ## Github Open Source Template
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/axetroy/Github.svg?branch=master)](https://travis-ci.org/axetroy/Github)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
