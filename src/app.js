@@ -62,7 +62,7 @@ class App {
    * compile a file
    * @param absFilePath
    */
-  compile(absFilePath) {
+  async compile(absFilePath) {
     const pathInfo = path.parse(absFilePath);
     let builder = null;
     switch (pathInfo.ext) {
@@ -100,7 +100,7 @@ class App {
     }
 
     if (builder) {
-      builder.compile();
+      await builder.compile();
     }
   }
 
@@ -128,7 +128,7 @@ class App {
 
     const watcher = chokidar
       .watch(r, {
-        ignored: /((^|[\/\\])\..)|___jb_tmp___/
+        ignored: /((^|[\/\\])\..)|(___jb_tmp___$)|(log$)/
       })
       .on('add', filePath => {
         console.info(`[ADD]: ${filePath}`);

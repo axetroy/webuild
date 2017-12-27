@@ -18,7 +18,9 @@ p
     CONFIG.paths.cwd = process.cwd();
     CONFIG.paths.src = path.join(CONFIG.paths.cwd, options.src);
     CONFIG.paths.dist = path.join(CONFIG.paths.cwd, options.output);
-    app.dev();
+    app.dev().catch(err => {
+      console.error(err);
+    });
   });
 
 p
