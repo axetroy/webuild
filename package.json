@@ -1,7 +1,7 @@
 {
   "name": "webuild",
   "version": "0.0.1",
-  "description": "[![Build Status](https://travis-ci.org/axetroy/Github.svg?branch=master)](https://travis-ci.org/axetroy/Github) ![License](https://img.shields.io/badge/license-Apache-green.svg)",
+  "description": "舒适的小程序开发工具",
   "bin": {
     "webuild": "./bin/webuild"
   },
