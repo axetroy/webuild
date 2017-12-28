@@ -10,8 +10,9 @@
 - [x] 无入侵. 兼容原生开发方式. 不用更改一行代码.
 - [x] 支持引入NPM模块
 - [x] 支持ES2015, ES2016, ES2017...
-- [x] 强力压缩JS, 极大节省包体积. TODO: 基于AST压缩WXSS/WXML
-- [ ] 支持图片压缩
+- [x] 强力压缩JS, 极大节省包体积.
+- [x] 支持图片压缩, jpg/jpeg/mozjpeg/png/gif/webp/svg
+- [ ] 基于AST压缩WXSS/WXML
 
 **该项目为开发工具, 不是小程序框架**.
 
@@ -49,6 +50,10 @@ webuild dev --src ./ --output ./dist
 # 发布项目
 webuild build --src ./ --output ./dist
 ```
+
+源码src已被编译至dist目录.
+
+打开微信开发者工具, 加载dist目录即可
 
 ## Contributing
 
