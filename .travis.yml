@@ -13,7 +13,4 @@ cache:
     - node_modules
 
 script:
-  - echo "test success..."
-
-after_script:
-  - yarn run coverage
+  - npm run build
