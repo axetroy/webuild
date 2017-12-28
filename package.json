@@ -7,8 +7,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rm -rf ./dist && ./bin/webuild dev --src ./examples/basic/ --output ./dist",
-    "build": "rm -rf ./dist && ./bin/webuild build --src ./examples/basic/ --output ./dist"
+    "start": "rm -rf ./dist && ./bin/webuild dev --src ./examples/cnode/ --output ./dist",
+    "build": "rm -rf ./dist && ./bin/webuild build --src ./examples/cnode/ --output ./dist"
   },
   "repository": {
     "type": "git",
