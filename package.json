@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/axetroy/Github.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Axetroy",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/axetroy/Github/issues"
   },
@@ -21,7 +21,14 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-minify": "^0.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
     "caporal": "^0.9.0",
     "chokidar": "^1.7.0",
     "cssnano": "^3.10.0",
@@ -35,12 +42,6 @@
   },
   "devDependencies": {
     "@types/webpack": "^3.8.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-minify": "^0.2.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
     "timeago.js": "^3.0.2",
     "wxapp-r2": "^0.0.1"
   }

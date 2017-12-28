@@ -147,7 +147,10 @@ module.exports = function(moduleId) {
               {
                 test: /\.(jsx|js)?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                  presets: ['flow']
+                }
               }
             ]
           },
@@ -177,7 +180,7 @@ module.exports = function(moduleId) {
         inputFile,
         {
           env: process.env,
-          presets: ['env', 'stage-1', 'stage-2', 'stage-3'].concat(
+          presets: ['flow', 'env', 'stage-1', 'stage-2', 'stage-3'].concat(
             CONFIG.isProduction ? ['minify'] : []
           ),
           plugins: [
