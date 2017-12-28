@@ -91,41 +91,77 @@ module.exports = function(moduleId) {
 
     const outputPathInfo = path.parse(outputFile);
 
-    const WEBPACK_CONFIG = {
-      entry: inputFile,
-      output: {
-        path: outputPathInfo.dir,
-        filename: outputPathInfo.name + outputPathInfo.ext,
-        library: 'g',
-        libraryTarget: 'commonjs2'
-      },
-      resolve: {
-        modules: ['node_modules'],
-        extensions: ['.coffee', '.js', '.ts']
-      },
-      module: {
-        loaders: [
-          {
-            test: /\.(jsx|js)?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel-loader'
-          }
-        ]
-      },
-      plugins: plugins.filter(v => v)
-    };
-
     // 使用webpack打包缓存文件
     await new Promise((resolve, reject) => {
-      webpack(WEBPACK_CONFIG, function(err, stdout) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
+      webpack(
+        {
+          entry: inputFile,
+          output: {
+            path: outputPathInfo.dir,
+            filename: outputPathInfo.name + outputPathInfo.ext,
+            library: 'g',
+            libraryTarget: 'commonjs2'
+          },
+          resolve: {
+            modules: ['node_modules'],
+            extensions: ['.coffee', '.js', '.ts']
+          },
+          module: {
+            loaders: [
+              {
+                test: /\.(jsx|js)?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader'
+              }
+            ]
+          },
+          plugins: plugins.filter(v => v)
+        },
+        function(err, stdout) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
         }
-      });
+      );
     });
     await this.transform(outputFile, outputFile);
+
+    await new Promise((resolve, reject) => {
+      webpack(
+        {
+          entry: outputFile,
+          output: {
+            path: outputPathInfo.dir,
+            filename: outputPathInfo.name + outputPathInfo.ext,
+            library: 'g',
+            libraryTarget: 'commonjs2'
+          },
+          resolve: {
+            modules: ['node_modules'],
+            extensions: ['.coffee', '.js', '.ts']
+          },
+          module: {
+            loaders: [
+              {
+                test: /\.(jsx|js)?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader'
+              }
+            ]
+          },
+          plugins: plugins.filter(v => v)
+        },
+        function(err, stdout) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        }
+      );
+    });
   }
 
   /**
@@ -141,7 +177,20 @@ module.exports = function(moduleId) {
         inputFile,
         {
           env: process.env,
-          presets: ['env'].concat(CONFIG.isProduction ? ['minify'] : [])
+          presets: ['env', 'stage-1', 'stage-2', 'stage-3'].concat(
+            CONFIG.isProduction ? ['minify'] : []
+          ),
+          plugins: [
+            [
+              'transform-runtime',
+              {
+                helpers: false,
+                polyfill: false,
+                regenerator: true,
+                moduleName: 'babel-runtime'
+              }
+            ]
+          ]
         },
         function(err, result) {
           if (err) return reject(err);

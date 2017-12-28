@@ -35,7 +35,12 @@
   },
   "devDependencies": {
     "@types/webpack": "^3.8.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-minify": "^0.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
     "timeago.js": "^3.0.2",
     "wxapp-r2": "^0.0.1"
   }
