@@ -58,8 +58,8 @@ webuild build --src ./ --output ./dist
 
 ## Example
 
-- [official](https://github.com/axetroy/webuild/tree/master/examples/official)
-- [cNode](https://github.com/axetroy/webuild/tree/master/examples/cnode)
+- [Official](https://github.com/axetroy/webuild/tree/master/examples/official): 官方小程序组件
+- [CNode](https://github.com/axetroy/webuild/tree/master/examples/cnode): 试验下的CNode社区
 
 ## Contributing
 
