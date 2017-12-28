@@ -6,7 +6,9 @@
     "webuild": "./bin/webuild"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./bin/webuild dev --src ./examples/basic/ --output ./dist",
+    "build": "./bin/webuild build --src ./examples/basic/ --output ./dist"
   },
   "repository": {
     "type": "git",
