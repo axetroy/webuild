@@ -14,37 +14,34 @@ class CssBuilder extends Builder {
     super();
     this.name = 'css';
   }
-  async compile() {
+  async one(absFile) {
+    const relativeFilePath = path.relative(CONFIG.paths.src, absFile);
+    const distFilePath = path
+      .join(CONFIG.paths.dist, relativeFilePath)
+      .replace(/\.scss$/, '.wxss')
+      .replace(/\.less$/, '.wxss')
+      .replace(/\.sass$/, '.wxss')
+      .replace(/\.css$/, '.wxss');
+
+    await fs.ensureFile(distFilePath);
+
+    const result = await postcss(
+      [precss].concat(
+        // 生产环境下压缩css
+        CONFIG.isProduction ? [cssnano({ preset: 'default' })] : []
+      )
+    ).process(await fs.readFile(absFile, 'utf8'), {
+      from: absFile,
+      to: distFilePath
+    });
+
+    await fs.writeFile(distFilePath, result.css, 'utf8');
+  }
+  async all() {
     const files = Object.keys(this.files);
-
-    try {
-      while (files.length) {
-        let file = files.shift();
-        const relativeFilePath = path.relative(CONFIG.paths.src, file);
-        const distFilePath = path
-          .join(CONFIG.paths.dist, relativeFilePath)
-          .replace(/\.scss$/, '.wxss')
-          .replace(/\.less$/, '.wxss')
-          .replace(/\.sass$/, '.wxss')
-          .replace(/\.css$/, '.wxss');
-
-        await fs.ensureFile(distFilePath);
-
-        const result = await postcss(
-          [precss].concat(
-            // 生产环境下压缩css
-            CONFIG.isProduction ? [cssnano({ preset: 'default' })] : []
-          )
-        ).process(await fs.readFile(file, 'utf8'), {
-          from: file,
-          to: distFilePath
-        });
-
-        await fs.writeFile(distFilePath, result.css, 'utf8');
-      }
-    } catch (err) {
-      console.error(`Compile css error:`);
-      console.error(err);
+    while (files.length) {
+      const file = files.shift();
+      this.one(file);
     }
   }
 }

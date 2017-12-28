@@ -23,7 +23,7 @@ class ImageBuilder extends Builder {
    * @param absFilePath
    * @returns {Promise.<void>}
    */
-  async build(absFilePath) {
+  async one(absFilePath) {
     const ext = path.extname(absFilePath);
     const relativeFilePath = path.relative(CONFIG.paths.src, absFilePath);
     const distFilePath = path.join(CONFIG.paths.dist, relativeFilePath); // 最终输出路径

@@ -251,11 +251,15 @@ class JsBuilder extends Builder {
     webpackModule.unload(filePath);
   }
 
+  one() {
+    return this.all();
+  }
+
   /**
    * 编译这些js文件
    * @returns {Promise.<void>}
    */
-  async compile() {
+  async all() {
     try {
       // 把各文件移动到build目录下
       const files = [].concat(Object.keys(this.files));

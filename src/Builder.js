@@ -38,7 +38,7 @@ class Builder {
    * @param absFilePath
    * @returns {Promise.<void>}
    */
-  async build(absFilePath) {
+  async one(absFilePath) {
     const relativeFilePath = path.relative(CONFIG.paths.src, absFilePath);
     // 最终输出路径
     const distFilePath = path.join(CONFIG.paths.dist, relativeFilePath);
@@ -52,11 +52,11 @@ class Builder {
    * 默认的compile只会复制文件
    * @returns {Promise.<void>}
    */
-  async compile() {
+  async all() {
     const files = Object.keys(this.files);
     while (files.length) {
-      let file = files.shift();
-      this.build(file);
+      const file = files.shift();
+      this.one(file);
     }
   }
 }

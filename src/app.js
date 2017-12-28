@@ -10,7 +10,7 @@ class App {
   }
 
   /**
-   * find builder from a file
+   * 查找Builder
    * @param file
    * @returns {*}
    */
@@ -63,7 +63,18 @@ class App {
   }
 
   /**
-   * 派发时间
+   * 注册Builder
+   * @param Builder
+   * @returns {App}
+   */
+  register(Builder) {
+    const builder = new Builder();
+    this.builder[builder.name] = builder;
+    return this;
+  }
+
+  /**
+   * 派发事件
    * @param absFilePath
    * @param event {load/unload}
    */
@@ -75,25 +86,14 @@ class App {
   }
 
   /**
-   * 加载builder
-   * @param Builder
-   * @returns {App}
-   */
-  resolveBuilder(Builder) {
-    const builder = new Builder();
-    this.builder[builder.name] = builder;
-    return this;
-  }
-
-  /**
-   * 编译文件
+   * 单独编译一个文件
    * @param absFilePath
    * @returns {Promise.<void>}
    */
   async compile(absFilePath) {
     const builder = this.findBuilder(absFilePath);
     if (builder) {
-      await builder.compile();
+      await builder.one(absFilePath);
     }
   }
 
@@ -112,7 +112,7 @@ class App {
 
     const builders = Object.keys(this.builder);
 
-    await Promise.all(builders.map(builder => this.builder[builder].compile()));
+    await Promise.all(builders.map(builder => this.builder[builder].all()));
   }
 
   /**
@@ -136,7 +136,9 @@ class App {
           // load this new file
           this.dispatch(absFilePath, 'load');
           // recompile
-          this.compile(absFilePath);
+          this.compile(absFilePath).catch(err => {
+            console.error(err);
+          });
         }
       })
       .on('change', filePath => {
@@ -145,7 +147,9 @@ class App {
         const stat = fs.statSync(absFilePath);
         if (stat.isFile()) {
           // recompile
-          this.compile(absFilePath);
+          this.compile(absFilePath).catch(err => {
+            console.error(err);
+          });
         }
       })
       .on('unlink', filePath => {
@@ -156,7 +160,9 @@ class App {
           // unload this file
           this.dispatch(absFilePath, 'unload');
           // recompile
-          this.compile(absFilePath);
+          this.compile(absFilePath).catch(err => {
+            console.error(err);
+          });
         }
       });
   }
@@ -165,10 +171,10 @@ class App {
 const app = new App();
 
 app
-  .resolveBuilder(require('./builder/js'))
-  .resolveBuilder(require('./builder/css'))
-  .resolveBuilder(require('./builder/xml'))
-  .resolveBuilder(require('./builder/file'))
-  .resolveBuilder(require('./builder/image'));
+  .register(require('./builder/js'))
+  .register(require('./builder/css'))
+  .register(require('./builder/xml'))
+  .register(require('./builder/file'))
+  .register(require('./builder/image'));
 
 module.exports = app;

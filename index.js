@@ -1,3 +1,4 @@
+require('@axetroy/graceful')();
 const path = require('path');
 const program = require('caporal');
 const pkg = require('./package.json');
