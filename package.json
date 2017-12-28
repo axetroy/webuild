@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axetroy/Github.git"
+    "url": "git+https://github.com/axetroy/WeBuild.git"
   },
   "author": "Axetroy",
   "license": "Apache",
   "bugs": {
-    "url": "https://github.com/axetroy/Github/issues"
+    "url": "https://github.com/axetroy/WeBuild/issues"
   },
-  "homepage": "https://github.com/axetroy/Github#readme",
+  "homepage": "https://github.com/axetroy/WeBuild#readme",
   "dependencies": {
     "@axetroy/graceful": "^0.3.0",
     "babel-core": "^6.26.0",

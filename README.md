@@ -59,12 +59,12 @@ webuild build --src ./ --output ./dist
 
 ## Example
 
-- [Official](https://github.com/axetroy/webuild/tree/master/examples/official): 官方小程序组件
-- [CNode](https://github.com/axetroy/webuild/tree/master/examples/cnode): 试验下的CNode社区
+- [Official](https://github.com/axetroy/WeBuild/tree/master/examples/official): 官方小程序组件
+- [CNode](https://github.com/axetroy/WeBuild/tree/master/examples/cnode): 试验下的CNode社区
 
 ## Contributing
 
-[Contributing Guide](https://github.com/axetroy/webuild/blob/master/CONTRIBUTING.md)
+[Contributing Guide](https://github.com/axetroy/WeBuild/blob/master/CONTRIBUTING.md)
 
 如果你觉得项目不错，不要吝啬你的star.
 
@@ -73,10 +73,10 @@ webuild build --src ./ --output ./dist
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/webuild/commits?author=axetroy) [🐛](https://github.com/axetroy/webuild/issues?q=author%3Aaxetroy) 🎨 |
+| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/WeBuild/commits?author=axetroy) [🐛](https://github.com/axetroy/WeBuild/issues?q=author%3Aaxetroy) 🎨 |
 | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2FWeBuild.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2FWeBuild?ref=badge_large)
