@@ -1,6 +1,6 @@
 ## 舒适的小程序构建工具
 
-[![Build Status](https://travis-ci.org/axetroy/Github.svg?branch=master)](https://travis-ci.org/axetroy/Github)
+[![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
 工具欲在改善小程序的开发环境.
