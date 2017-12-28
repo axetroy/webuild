@@ -7,19 +7,46 @@
 
 特性:
 
-- [x] 无入侵, 兼容原生开发方式. 不用更改一行代码.
+- [x] 无入侵. 兼容原生开发方式. 不用更改一行代码.
 - [x] 支持引入NPM模块
 - [x] 支持ES2015, ES2016, ES2017...
 - [x] 强力压缩, 极大节省包体积.
 
 **该项目为开发工具, 不是小程序框架**.
 
-> 在正开发阶段...
-
 ## 如何使用
 
+假设你的小程序项目目录
+
+```
+.
+├── app.css
+├── app.js
+├── app.json
+└── pages
+    ├── detail
+    │   ├── index.css
+    │   ├── index.js
+    │   └── index.xml
+    └── index
+        ├── index.css
+        ├── index.js
+        └── index.xml
+```
+
+在项目目录下运行
+
+
 ```bash
-npm intsall @axetroy/webuild  # TODO
+
+# 安装webuild
+npm intsall @axetroy/webuild -g
+
+# 运行命令, 监听文件变化并打包编译
+webuild dev --src ./ --output ./dist
+
+# 发布项目
+webuild build --src ./ --output ./dist
 ```
 
 ## Contributing
