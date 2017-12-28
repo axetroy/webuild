@@ -12,6 +12,7 @@ class XmlBuilder extends Builder {
   constructor() {
     super();
     this.name = 'xml';
+    this.ouputExt = '.wxml';
   }
   async one(absFilePath) {
     let fileContent = await fs.readFile(absFilePath, 'utf8');

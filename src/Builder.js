@@ -1,19 +1,12 @@
 const path = require('path');
 const fs = require('fs-extra');
-const pd = require('pretty-data').pd;
 const CONFIG = require('./config');
 
 class Builder {
   constructor() {
     this.files = {};
-    this.name = 'builder';
-  }
-
-  /**
-   * 清空文件
-   */
-  clear() {
-    this.files = {};
+    this.name = 'default';
+    this.ouputExt = '';
   }
 
   /**
@@ -22,6 +15,7 @@ class Builder {
    */
   load(filePath) {
     this.files[filePath] = 1;
+    this.one(filePath);
   }
 
   /**
@@ -31,6 +25,29 @@ class Builder {
   unload(filePath) {
     this.files[filePath] = null;
     delete this.files[filePath];
+
+    // 最终输出路径
+    const distFilePath = path.join(
+      CONFIG.paths.dist,
+      path.relative(CONFIG.paths.src, filePath)
+    );
+
+    const p = path.parse(distFilePath);
+
+    // 如果经过转换后, 后缀名发生变化
+    // 则builder需要自己维护一个映射表
+    if (this.ouputExt) {
+      p.base =
+        path
+          .basename(distFilePath)
+          .replace(new RegExp(path.extname(distFilePath) + '$'), '') +
+        this.ouputExt;
+      p.ext = this.ouputExt;
+    }
+
+    fs.remove(path.format(p)).catch(err => {
+      console.error(err);
+    });
   }
 
   /**

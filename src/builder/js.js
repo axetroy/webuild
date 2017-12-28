@@ -238,8 +238,8 @@ class JsBuilder extends Builder {
    * @param filePath 绝对路径
    */
   load(filePath) {
-    super.load(filePath);
     webpackModule.load(filePath);
+    super.load(filePath);
   }
 
   /**
@@ -247,8 +247,8 @@ class JsBuilder extends Builder {
    * @param filePath 绝对路径
    */
   unload(filePath) {
-    super.load(filePath);
     webpackModule.unload(filePath);
+    super.unload(filePath);
   }
 
   one() {

@@ -13,15 +13,17 @@ class CssBuilder extends Builder {
   constructor() {
     super();
     this.name = 'css';
+    this.ouputExt = '.wxss';
   }
+
   async one(absFile) {
     const relativeFilePath = path.relative(CONFIG.paths.src, absFile);
     const distFilePath = path
       .join(CONFIG.paths.dist, relativeFilePath)
-      .replace(/\.scss$/, '.wxss')
-      .replace(/\.less$/, '.wxss')
-      .replace(/\.sass$/, '.wxss')
-      .replace(/\.css$/, '.wxss');
+      .replace(/\.scss$/, this.ouputExt)
+      .replace(/\.less$/, this.ouputExt)
+      .replace(/\.sass$/, this.ouputExt)
+      .replace(/\.css$/, this.ouputExt);
 
     await fs.ensureFile(distFilePath);
 

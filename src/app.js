@@ -135,10 +135,6 @@ class App {
         if (stat.isFile()) {
           // load this new file
           this.dispatch(absFilePath, 'load');
-          // recompile
-          this.compile(absFilePath).catch(err => {
-            console.error(err);
-          });
         }
       })
       .on('change', filePath => {
@@ -155,15 +151,8 @@ class App {
       .on('unlink', filePath => {
         console.info(`[DELETE]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
-        const stat = fs.statSync(absFilePath);
-        if (stat.isFile()) {
-          // unload this file
-          this.dispatch(absFilePath, 'unload');
-          // recompile
-          this.compile(absFilePath).catch(err => {
-            console.error(err);
-          });
-        }
+        // unload this file
+        this.dispatch(absFilePath, 'unload');
       });
   }
 }
