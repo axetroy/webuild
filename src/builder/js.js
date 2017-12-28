@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs-extra');
 const babel = require('babel-core');
+const UglifyJS = require('uglify-js');
 const utils = require('../utils');
 const Builder = require('../Builder');
 
@@ -147,10 +148,7 @@ module.exports = function(moduleId) {
               {
                 test: /\.(jsx|js)?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
-                options: {
-                  presets: ['flow']
-                }
+                loader: 'babel-loader'
               }
             ]
           },
@@ -165,6 +163,14 @@ module.exports = function(moduleId) {
         }
       );
     });
+
+    if (CONFIG.isProduction) {
+      // ugly
+      const uglifyResult = UglifyJS.minify(
+        await fs.readFile(outputFile, 'utf8')
+      );
+      await fs.writeFile(outputFile, uglifyResult.code);
+    }
   }
 
   /**
@@ -179,10 +185,12 @@ module.exports = function(moduleId) {
       babel.transformFile(
         inputFile,
         {
-          env: process.env,
-          presets: ['flow', 'env', 'stage-1', 'stage-2', 'stage-3'].concat(
-            CONFIG.isProduction ? ['minify'] : []
-          ),
+          env: {
+            production: {
+              presets: ['minify']
+            }
+          },
+          presets: ['flow', 'env', 'stage-1', 'stage-2', 'stage-3'],
           plugins: [
             [
               'transform-runtime',
@@ -206,11 +214,7 @@ module.exports = function(moduleId) {
       outputFile,
       `// wrapper start
 ;(function(){
-
-
 ${result.code}
-
-
 // wrapper end
 })();`
     );
