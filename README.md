@@ -8,13 +8,14 @@
 
 特性:
 
-- [x] 零配置, 你所需要的, 都已经有了
-- [x] 无入侵. 兼容原生开发方式. 不用更改一行代码.
-- [x] 支持引入NPM模块
-- [x] 支持ES2015, ES2016, ES2017...
-- [x] 强力压缩JS, 极大节省包体积.
-- [x] 支持图片压缩, jpg/jpeg/mozjpeg/png/gif/webp/svg
-- [ ] 基于AST压缩WXSS/WXML
+* [x] 零配置, 你所需要的, 都已经有了
+* [x] 无入侵. 兼容原生开发方式. 不用更改一行代码.
+* [x] 支持引入 NPM 模块
+* [x] 支持 ES2015, ES2016, ES2017...
+* [x] 强力压缩 JS, 极大节省包体积.
+* [x] 支持图片压缩, jpg/jpeg/mozjpeg/png/gif/webp/svg
+* [x] WXSS/WXML/JSON 压缩
+* [ ] 基于 AST 压缩 WXSS/WXML(把 className 替换成 1 个字符)
 
 **该项目为开发工具, 不是小程序框架**.
 
@@ -40,9 +41,7 @@
 
 在项目目录下运行
 
-
 ```bash
-
 # 安装webuild
 npm intsall @axetroy/webuild -g
 
@@ -53,28 +52,31 @@ webuild dev --src ./ --output ./dist
 webuild build --src ./ --output ./dist
 ```
 
-源码src已被编译至dist目录.
+源码 src 已被编译至 dist 目录.
 
-打开微信开发者工具, 加载dist目录即可
+打开微信开发者工具, 加载 dist 目录即可
 
 ## Example
 
-- [Official](https://github.com/axetroy/WeBuild/tree/master/examples/official): 官方小程序组件
-- [CNode](https://github.com/axetroy/WeBuild/tree/master/examples/cnode): 试验下的CNode社区
+* [Official](https://github.com/axetroy/WeBuild/tree/master/examples/official): 官方小程序组件
+* [CNode](https://github.com/axetroy/WeBuild/tree/master/examples/cnode): 试验下的 CNode 社区
 
 ## Contributing
 
 [Contributing Guide](https://github.com/axetroy/WeBuild/blob/master/CONTRIBUTING.md)
 
-如果你觉得项目不错，不要吝啬你的star.
+如果你觉得项目不错，不要吝啬你的 star.
 
-长期造轮子，欢迎follow.
+长期造轮子，欢迎 follow.
 
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 | [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/WeBuild/commits?author=axetroy) [🐛](https://github.com/axetroy/WeBuild/issues?q=author%3Aaxetroy) 🎨 |
-| :---: |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
