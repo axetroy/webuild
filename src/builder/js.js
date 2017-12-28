@@ -243,7 +243,8 @@ class JsBuilder extends Builder {
    */
   load(filePath) {
     webpackModule.load(filePath);
-    super.load(filePath);
+    this.files[filePath] = 1;
+    // super.load(filePath); // it will trigger this.one() javascript compiler
   }
 
   /**
