@@ -38,7 +38,7 @@ class App {
         builder = 'xml';
         break;
       case '.json':
-        builder = 'file';
+        builder = 'json';
         break;
       case '.yaml':
       case '.yml':
@@ -164,6 +164,7 @@ app
   .register(require('./builder/css'))
   .register(require('./builder/xml'))
   .register(require('./builder/file'))
-  .register(require('./builder/image'));
+  .register(require('./builder/image'))
+  .register(require('./builder/json'));
 
 module.exports = app;

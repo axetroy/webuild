@@ -39,13 +39,6 @@ class CssBuilder extends Builder {
 
     await fs.writeFile(distFilePath, result.css, 'utf8');
   }
-  async all() {
-    const files = Object.keys(this.files);
-    while (files.length) {
-      const file = files.shift();
-      this.one(file);
-    }
-  }
 }
 
 module.exports = CssBuilder;
