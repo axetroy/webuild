@@ -1,5 +1,6 @@
 ## 舒适的小程序构建工具
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
