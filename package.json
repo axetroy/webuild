@@ -7,15 +7,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rm -rf ./dist && ./bin/webuild dev --src ./examples/cnode/ --output ./dist",
-    "build": "rm -rf ./dist && ./bin/webuild build --src ./examples/cnode/ --output ./dist"
+    "start": "rm -rf ./dist && ./bin/webuild dev --src ./examples/cnode/src --output ./dist",
+    "build": "rm -rf ./dist && ./bin/webuild build --src ./examples/cnode/src --output ./dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/axetroy/Github.git"
   },
   "author": "Axetroy",
-  "license": "MIT",
+  "license": "Apache",
   "bugs": {
     "url": "https://github.com/axetroy/Github/issues"
   },
