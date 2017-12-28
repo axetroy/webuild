@@ -5,7 +5,7 @@ os:
   - linux
 
 node_js:
-  - '6.10.0'
+  - 8.9.0
 
 cache:
   yarn: true
@@ -13,7 +13,4 @@ cache:
     - node_modules
 
 script:
-  - echo "test success..."
-
-after_script:
-  - yarn run coverage
+  - npm run build

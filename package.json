@@ -1,41 +1,58 @@
 {
-  "name": "webuild",
+  "name": "@axetroy/webuild",
   "version": "0.0.1",
-  "description": "[![Build Status](https://travis-ci.org/axetroy/Github.svg?branch=master)](https://travis-ci.org/axetroy/Github) ![License](https://img.shields.io/badge/license-Apache-green.svg)",
+  "description": "零配置无侵入式的微信小程序开发工具",
   "bin": {
     "webuild": "./bin/webuild"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rm -rf ./dist && ./bin/webuild dev --src ./examples/cnode/src --output ./dist",
+    "build": "rm -rf ./dist && ./bin/webuild build --src ./examples/cnode/src --output ./dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/axetroy/Github.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Axetroy",
+  "license": "Apache",
   "bugs": {
     "url": "https://github.com/axetroy/Github/issues"
   },
   "homepage": "https://github.com/axetroy/Github#readme",
   "dependencies": {
+    "@axetroy/graceful": "^0.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-minify": "^0.2.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
     "caporal": "^0.9.0",
     "chokidar": "^1.7.0",
     "cssnano": "^3.10.0",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
+    "imagemin": "^5.3.1",
+    "imagemin-gifsicle": "^5.2.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "imagemin-svgo": "^6.0.0",
+    "imagemin-webp": "^4.1.0",
     "lodash.debounce": "^4.0.8",
     "postcss": "^6.0.14",
     "precss": "^2.0.0",
     "pretty-data": "^0.40.0",
+    "uglify-js": "^3.3.2",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
     "@types/webpack": "^3.8.1",
-    "babel-preset-minify": "^0.2.0",
     "timeago.js": "^3.0.2",
     "wxapp-r2": "^0.0.1"
   }
