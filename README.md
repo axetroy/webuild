@@ -58,11 +58,12 @@ webuild build --src ./ --output ./dist
 
 ## Example
 
+- [official](https://github.com/axetroy/webuild/tree/master/examples/official)
 - [cNode](https://github.com/axetroy/webuild/tree/master/examples/cnode)
 
 ## Contributing
 
-[Contributing Guide](https://github.com/axetroy/Github/blob/master/CONTRIBUTING.md)
+[Contributing Guide](https://github.com/axetroy/webuild/blob/master/CONTRIBUTING.md)
 
 如果你觉得项目不错，不要吝啬你的star.
 
@@ -71,10 +72,10 @@ webuild build --src ./ --output ./dist
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/Github/commits?author=axetroy) [🐛](https://github.com/axetroy/Github/issues?q=author%3Aaxetroy) 🎨 |
+| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/webuild/commits?author=axetroy) [🐛](https://github.com/axetroy/webuild/issues?q=author%3Aaxetroy) 🎨 |
 | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2FGithub.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2FGithub?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild?ref=badge_large)
