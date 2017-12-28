@@ -15,6 +15,7 @@
 * [x] 强力压缩 JS, 极大节省包体积.
 * [x] 支持图片压缩, jpg/jpeg/mozjpeg/png/gif/webp/svg
 * [x] WXSS/WXML/JSON 压缩
+* [x] 支持使用css/sass/less代替wxss，xml代替wxml
 * [ ] 基于 AST 压缩 WXSS/WXML(把 className 替换成 1 个字符)
 
 **该项目为开发工具, 不是小程序框架**.
