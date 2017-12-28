@@ -56,6 +56,10 @@ webuild build --src ./ --output ./dist
 
 打开微信开发者工具, 加载dist目录即可
 
+## Example
+
+- [cNode](https://github.com/axetroy/webuild/tree/master/examples/cnode)
+
 ## Contributing
 
 [Contributing Guide](https://github.com/axetroy/Github/blob/master/CONTRIBUTING.md)
