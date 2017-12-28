@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs-extra');
 const chokidar = require('chokidar');
 const { query } = require('./utils');
 const CONFIG = require('./config');
@@ -9,11 +10,11 @@ class App {
   }
 
   /**
-   * 派发时间
+   * find builder from a file
    * @param file
-   * @param event {load/unload}
+   * @returns {*}
    */
-  dispatch(file, event) {
+  findBuilder(file) {
     const f = path.parse(file);
 
     let builder = null;
@@ -23,39 +24,53 @@ class App {
       case '.jsx':
       case '.ts':
       case '.tsx':
-        builder = this.builder['js'];
+        builder = 'js';
         break;
       case '.css':
       case '.scss':
       case '.less':
       case '.sass':
       case '.wxss':
-        builder = this.builder['css'];
+        builder = 'css';
         break;
       case '.xml':
       case '.wxml':
-        builder = this.builder['xml'];
+        builder = 'xml';
         break;
       case '.json':
-        builder = this.builder['file'];
+        builder = 'file';
         break;
       case '.yaml':
       case '.yml':
-        builder = this.builder['file'];
+        builder = 'file';
         break;
-      case '.pmg':
+      case '.png':
       case '.jpg':
+      case '.jpeg':
+      case '.mozjpeg':
       case '.gif':
-        builder = this.builder['file'];
+      case '.svg':
+      case '.webp':
+        builder = 'image';
         break;
       default:
         if (f.ext) {
-          builder = this.builder['file'];
+          builder = 'file';
         }
     }
 
+    return this.builder[builder];
+  }
+
+  /**
+   * 派发时间
+   * @param absFilePath
+   * @param event {load/unload}
+   */
+  dispatch(absFilePath, event) {
+    const builder = this.findBuilder(absFilePath);
     if (builder) {
-      builder[event](file);
+      builder[event](absFilePath);
     }
   }
 
@@ -76,42 +91,7 @@ class App {
    * @returns {Promise.<void>}
    */
   async compile(absFilePath) {
-    const pathInfo = path.parse(absFilePath);
-    let builder = null;
-    switch (pathInfo.ext) {
-      case '.js':
-      case '.jsx':
-      case '.ts':
-      case '.tsx':
-        builder = this.builder['js'];
-        break;
-      case '.css':
-      case '.scss':
-      case '.less':
-      case '.sass':
-      case '.wxss':
-        builder = this.builder['css'];
-        break;
-      case '.xml':
-      case '.wxml':
-        builder = this.builder['xml'];
-        break;
-      case '.json':
-        builder = this.builder['file'];
-        break;
-      case '.yaml':
-      case '.yml':
-        builder = this.builder['file'];
-        break;
-      case '.pmg':
-      case '.jpg':
-      case '.gif':
-        builder = this.builder['file'];
-        break;
-      default:
-        builder = this.builder['file'];
-    }
-
+    const builder = this.findBuilder(absFilePath);
     if (builder) {
       await builder.compile();
     }
@@ -151,24 +131,33 @@ class App {
       .on('add', filePath => {
         console.info(`[ADD]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
-        // load this new file
-        this.dispatch(absFilePath, 'load');
-        // recompile
-        this.compile(absFilePath);
+        const stat = fs.statSync(absFilePath);
+        if (stat.isFile()) {
+          // load this new file
+          this.dispatch(absFilePath, 'load');
+          // recompile
+          this.compile(absFilePath);
+        }
       })
       .on('change', filePath => {
         console.info(`[CHANGE]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
-        // recompile
-        this.compile(absFilePath);
+        const stat = fs.statSync(absFilePath);
+        if (stat.isFile()) {
+          // recompile
+          this.compile(absFilePath);
+        }
       })
       .on('unlink', filePath => {
         console.info(`[DELETE]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
-        // unload this file
-        this.dispatch(absFilePath, 'unload');
-        // recompile
-        this.compile(absFilePath);
+        const stat = fs.statSync(absFilePath);
+        if (stat.isFile()) {
+          // unload this file
+          this.dispatch(absFilePath, 'unload');
+          // recompile
+          this.compile(absFilePath);
+        }
       });
   }
 }
@@ -179,6 +168,7 @@ app
   .resolveBuilder(require('./builder/js'))
   .resolveBuilder(require('./builder/css'))
   .resolveBuilder(require('./builder/xml'))
-  .resolveBuilder(require('./builder/file'));
+  .resolveBuilder(require('./builder/file'))
+  .resolveBuilder(require('./builder/image'));
 
 module.exports = app;

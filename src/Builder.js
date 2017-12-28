@@ -34,6 +34,20 @@ class Builder {
   }
 
   /**
+   * 构建单独一个文件
+   * @param absFilePath
+   * @returns {Promise.<void>}
+   */
+  async build(absFilePath) {
+    const relativeFilePath = path.relative(CONFIG.paths.src, absFilePath);
+    // 最终输出路径
+    const distFilePath = path.join(CONFIG.paths.dist, relativeFilePath);
+    fs.ensureFile(distFilePath).then(() => {
+      fs.createReadStream(absFilePath).pipe(fs.createWriteStream(distFilePath));
+    });
+  }
+
+  /**
    * compile
    * 默认的compile只会复制文件
    * @returns {Promise.<void>}
@@ -42,22 +56,7 @@ class Builder {
     const files = Object.keys(this.files);
     while (files.length) {
       let file = files.shift();
-      let fileContent = await fs.readFile(file, 'utf8');
-
-      // 生产环境下，会对一些文件进行压缩
-      if (CONFIG.isProduction) {
-        const pathInfo = path.parse(file);
-        switch (pathInfo.ext) {
-          case '.json':
-            fileContent = pd.jsonmin(fileContent);
-            break;
-        }
-      }
-
-      const relativeFilePath = path.relative(CONFIG.paths.src, file);
-      const distFilePath = path.join(CONFIG.paths.dist, relativeFilePath);
-      await fs.ensureFile(distFilePath);
-      await fs.writeFile(distFilePath, fileContent, 'utf8');
+      this.build(file);
     }
   }
 }
