@@ -1,7 +1,7 @@
 ## 零配置, 无侵入式的微信小程序开发工具
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
+[![Build Status](https://travis-ci.org/axetroy/WeBuild.svg?branch=master)](https://travis-ci.org/axetroy/WeBuild)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
 工欲善其事, 必先利其器
