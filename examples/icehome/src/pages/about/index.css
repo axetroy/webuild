@@ -1,0 +1,36 @@
+.title {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.link {
+  color: #2196F3;
+}
+
+.content {
+  margin: 0 0.5rem;
+}
+
+.desc,
+.contact {
+  padding: 0.2rem 0.5rem;
+  margin: 0.2rem 0;
+  background-color: #eeeeee;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  width: 32px;
+  height: 32px;
+}
+
+.contact .meta {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.contact .line {
+  padding: 0.1rem 0;
+  line-height: 32px;
+  margin-bottom: 0.5rem;
+}

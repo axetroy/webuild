@@ -1,0 +1,101 @@
+<view>
+  <swiper
+    class="swiper"
+    indicator-dots="true"
+    autoplay="true"
+    interval="5000"
+    duration="1000"
+  >
+    <block wx:for="{{movies}}" wx:for-index="index" wx:key="{{item.url}}">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="production">
+    <view class="info">
+      <view class="row justify-content-center">
+        <text class="title">纯手工产品</text>
+      </view>
+      <view class="row justify-content-center">
+        <text class="help-text">纯天然原材料， 纯手工制作</text>
+      </view>
+    </view>
+
+    <view class="row wrap">
+
+      <view class="col-6" wx:for="{{prods}}" wx:for-index="index" wx:key="{{item.name}}">
+        <image
+          style="width: 200px; height: 200px; background-color: #eeeeee;"
+          mode="aspectFill"
+          src="{{item.image}}"
+        />
+        <view class="row justify-content-center">
+          <text class="pro-name">{{item.name}}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="showcase">
+    <view class="info">
+      <view class="row justify-content-center">
+        <text class="title">优质的产品质量</text>
+      </view>
+      <view class="row justify-content-center">
+        <text class="help-text">用心做好每个产品</text>
+      </view>
+    </view>
+    <view>
+      <image
+        mode="widthFix"
+        style="width:100%"
+        src="{{'https://img.alicdn.com/imgextra/i4/1576093054/TB25SGDv4lmpuFjSZPfXXc9iXXa_!!1576093054.jpg'}}"
+      />
+      <image
+        mode="widthFix"
+        style="width:100%"
+        src="{{'https://img.alicdn.com/imgextra/i4/1576093054/TB2VQeav5pnpuFjSZFkXXc4ZpXa_!!1576093054.jpg'}}"
+      />
+      <image
+        mode="widthFix"
+        style="width:100%"
+        src="{{'https://img.alicdn.com/imgextra/i1/1576093054/TB2uffDsbBkpuFjy1zkXXbSpFXa_!!1576093054.jpg'}}"
+      />
+
+      <image
+        mode="widthFix"
+        style="width:100%"
+        src="{{'https://img.alicdn.com/imgextra/i4/1576093054/TB2xvJDv.lnpuFjSZFjXXXTaVXa_!!1576093054.jpg'}}"
+      />
+    </view>
+  </view>
+
+  <view class="evaluate">
+    <view class="info">
+      <view class="row justify-content-center">
+        <text class="title">无数用户好评</text>
+      </view>
+      <view class="row justify-content-center">
+        <text class="help-text">群众的眼光是雪亮的</text>
+      </view>
+    </view>
+    <view>
+      <swiper
+        class="swiper"
+        indicator-dots="true"
+        autoplay="true"
+        interval="5000"
+        duration="1000"
+      >
+        <block wx:for="{{movies}}" wx:for-index="index" wx:key="{{item.url}}">
+          <swiper-item>
+            <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>

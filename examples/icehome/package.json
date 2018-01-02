@@ -1,0 +1,16 @@
+{
+  "name": "icehome",
+  "version": "1.0.0",
+  "description": "Example for webuild",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webuild dev --src ./src --output ./dist",
+    "build": "webuild build --src ./src --output ./dist"
+  },
+  "author": "Axetroy",
+  "license": "Apache",
+  "devDependencies": {
+    "@axetroy/webuild": "^0.0.1"
+  }
+}

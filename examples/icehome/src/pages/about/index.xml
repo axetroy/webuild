@@ -1,0 +1,56 @@
+<view>
+  <image
+    mode="widthFix"
+    style="width:100%"
+    src="{{'https://img.alicdn.com/imgextra/i4/1576093054/TB2xvJDv.lnpuFjSZFjXXXTaVXa_!!1576093054.jpg'}}"
+  />
+  <view class="row justify-content-center">
+    <text class="title">冰冰家纯手工店</text>
+  </view>
+  <view class="content">
+    <view class="desc">
+      <text>
+        冰冰家纯手工店，建立于2017年，是一个以品质为先，服务顾客为理念的手工店。
+        我们以优质的原材料，制作可口的、富有营养的美食\n
+        冰冰家纯手工店坐落于南宁市安吉万达华府
+      </text>
+    </view>
+    <view class="contact">
+      <view class="meta">
+        <text>联系方式:</text>
+      </view>
+      <view class="line row align-items-center">
+        <image class="icon" mode="center" src="/static/icon/location.png" />
+        <text class="link" bindtap="locate">南宁安吉万达华府</text>
+      </view>
+      <view class="line row align-items-center">
+        <image class="icon" mode="center" src="/static/icon/wechat.png" />
+        <text>冰冰有理</text>
+      </view>
+      <view class="line row align-items-center">
+        <image class="icon" mode="center" src="/static/icon/phone.png" />
+        <text class="link" bindtap="call" data-number="13377175342">13377175342</text>
+      </view>
+      <view class="line row align-items-center">
+        <image class="icon" mode="center" src="/static/icon/email.png" />
+        13377175342@qq.com
+      </view>
+    </view>
+
+    <view>
+      <map
+        id="map"
+        latitude="22.868257"
+        longitude="108.292419"
+        scale="14"
+        controls="{{controls}}"
+        bindcontroltap="controltap"
+        markers="{{markers}}"
+        bindmarkertap="markertap"
+        bindregionchange="regionchange"
+        show-location
+        style="width: 100%; height: 300px;"
+      />
+    </view>
+  </view>
+</view>

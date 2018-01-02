@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/production/index",
+    "pages/detail/index",
+    "pages/about/index",
+    "pages/contact/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "CNode",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "/static/icon/home.png",
+        "selectedIconPath": "/static/icon/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/static/icon/home.png",
+        "selectedIconPath": "/static/icon/home.png",
+        "pagePath": "pages/production/index",
+        "text": "产品中心"
+      },
+      {
+        "iconPath": "/static/icon/home.png",
+        "selectedIconPath": "/static/icon/home.png",
+        "pagePath": "pages/about/index",
+        "text": "关于我们"
+      },
+      {
+        "iconPath": "/static/icon/phone.png",
+        "selectedIconPath": "/static/icon/phone.png",
+        "pagePath": "pages/contact/index",
+        "text": "在线咨询"
+      }
+    ]
+  }
+}

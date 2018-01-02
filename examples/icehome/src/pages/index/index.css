@@ -1,0 +1,43 @@
+.production{
+  background-color: #EEEEEE;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.pro-name{
+  margin: 0.2rem 0;
+  padding: 0.2rem 0;
+}
+
+.showcase{
+  position: relative;
+}
+
+.showcase image{
+  margin-top: -12rpx;
+}
+
+.help-text {
+  font-size: 0.6rem;
+  color: #9e9e9e;
+}
+
+.desc {
+  font-size: 0.9rem;
+}
+
+.info {
+  padding: 0.4rem 0;
+}
+
+.swiper {
+  height: 400rpx;
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}

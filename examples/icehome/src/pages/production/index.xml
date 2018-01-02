@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="pro" wx:for="{{prods}}" wx:for-index="index" wx:key="{{item.name}}" bindtap="go2detail" data-name="{{item}}">
+    <view class="img">
+      <image
+        style="width: 140px; height: 140px; background-color: #eeeeee;"
+        mode="aspectFill"
+        src="{{item.image}}"
+      />
+    </view>
+    <view class="desc">
+      <view style="margin-bottom: 0.5rem;">
+        <text style="font-size:1.2rem">{{item.name}}</text>
+      </view>
+      <view class="desc">
+        {{item.desc}}
+      </view>
+    </view>
+  </view>
+</view>

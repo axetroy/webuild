@@ -1,0 +1,580 @@
+.row {
+  flex-direction: row;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.col,
+.row {
+  display: flex;
+}
+.col::after,
+.col::before,
+.row::after,
+.row::before {
+  content: '';
+  clear: both;
+}
+
+.order-0 {
+  order: 0;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-3 {
+  order: 3;
+}
+
+.order-4 {
+  order: 4;
+}
+
+.order-5 {
+  order: 5;
+}
+
+.order-6 {
+  order: 6;
+}
+
+.order-7 {
+  order: 7;
+}
+
+.order-8 {
+  order: 8;
+}
+
+.order-9 {
+  order: 9;
+}
+
+.order-10 {
+  order: 10;
+}
+
+.order-11 {
+  order: 11;
+}
+
+.order-12 {
+  order: 12;
+}
+
+.col-0 {
+  flex: 0 0 0%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-1 {
+  flex: 0 0 8.33333%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-2 {
+  flex: 0 0 16.66667%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-3 {
+  flex: 0 0 25%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-4 {
+  flex: 0 0 33.33333%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-5 {
+  flex: 0 0 41.66667%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-7 {
+  flex: 0 0 58.33333%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-8 {
+  flex: 0 0 66.66667%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-9 {
+  flex: 0 0 75%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-10 {
+  flex: 0 0 83.33333%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-11 {
+  flex: 0 0 91.66667%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+}
+
+.offset-0 {
+  margin-left: 0%;
+}
+
+.offset-1 {
+  margin-left: 8.33333%;
+}
+
+.offset-2 {
+  margin-left: 16.66667%;
+}
+
+.offset-3 {
+  margin-left: 25%;
+}
+
+.offset-4 {
+  margin-left: 33.33333%;
+}
+
+.offset-5 {
+  margin-left: 41.66667%;
+}
+
+.offset-6 {
+  margin-left: 50%;
+}
+
+.offset-7 {
+  margin-left: 58.33333%;
+}
+
+.offset-8 {
+  margin-left: 66.66667%;
+}
+
+.offset-9 {
+  margin-left: 75%;
+}
+
+.offset-10 {
+  margin-left: 83.33333%;
+}
+
+.offset-11 {
+  margin-left: 91.66667%;
+}
+
+.offset-12 {
+  margin-left: 100%;
+}
+
+.pull-0 {
+  right: 0%;
+}
+
+.pull-1 {
+  right: 8.33333%;
+}
+
+.pull-2 {
+  right: 16.66667%;
+}
+
+.pull-3 {
+  right: 25%;
+}
+
+.pull-4 {
+  right: 33.33333%;
+}
+
+.pull-5 {
+  right: 41.66667%;
+}
+
+.pull-6 {
+  right: 50%;
+}
+
+.pull-7 {
+  right: 58.33333%;
+}
+
+.pull-8 {
+  right: 66.66667%;
+}
+
+.pull-9 {
+  right: 75%;
+}
+
+.pull-10 {
+  right: 83.33333%;
+}
+
+.pull-11 {
+  right: 91.66667%;
+}
+
+.pull-12 {
+  right: 100%;
+}
+
+.push-0 {
+  left: 0%;
+}
+
+.push-1 {
+  left: 8.33333%;
+}
+
+.push-2 {
+  left: 16.66667%;
+}
+
+.push-3 {
+  left: 25%;
+}
+
+.push-4 {
+  left: 33.33333%;
+}
+
+.push-5 {
+  left: 41.66667%;
+}
+
+.push-6 {
+  left: 50%;
+}
+
+.push-7 {
+  left: 58.33333%;
+}
+
+.push-8 {
+  left: 66.66667%;
+}
+
+.push-9 {
+  left: 75%;
+}
+
+.push-10 {
+  left: 83.33333%;
+}
+
+.push-11 {
+  left: 91.66667%;
+}
+
+.push-12 {
+  left: 100%;
+}
+
+.align-item-flex-start {
+  align-items: flex-start;
+}
+
+.align-item-flex-end {
+  align-items: flex-end;
+}
+
+.align-item-center {
+  align-items: center;
+}
+
+.align-item-baseline {
+  align-items: baseline;
+}
+
+.align-item-stretch {
+  align-items: stretch;
+}
+
+.align-content-flex-start {
+  align-content: flex-start;
+}
+
+.align-content-flex-end {
+  align-content: flex-end;
+}
+
+.align-content-center {
+  align-content: center;
+}
+
+.align-content-space-between {
+  align-content: space-between;
+}
+
+.align-content-space-around {
+  align-content: space-around;
+}
+
+.align-content-stretch {
+  align-content: stretch;
+}
+
+.justify-content-flex-start {
+  justify-content: flex-start;
+}
+
+.justify-content-flex-end {
+  justify-content: flex-end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.justify-content-space-around {
+  justify-content: space-around;
+}
+
+.grow-0 {
+  flex-grow: 0;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
+.grow-2 {
+  flex-grow: 2;
+}
+
+.grow-3 {
+  flex-grow: 3;
+}
+
+.grow-4 {
+  flex-grow: 4;
+}
+
+.grow-5 {
+  flex-grow: 5;
+}
+
+.grow-6 {
+  flex-grow: 6;
+}
+
+.grow-7 {
+  flex-grow: 7;
+}
+
+.grow-8 {
+  flex-grow: 8;
+}
+
+.grow-9 {
+  flex-grow: 9;
+}
+
+.grow-10 {
+  flex-grow: 10;
+}
+
+.grow-11 {
+  flex-grow: 11;
+}
+
+.grow-12 {
+  flex-grow: 12;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.shrink-1 {
+  flex-shrink: 1;
+}
+
+.shrink-2 {
+  flex-shrink: 2;
+}
+
+.shrink-3 {
+  flex-shrink: 3;
+}
+
+.shrink-4 {
+  flex-shrink: 4;
+}
+
+.shrink-5 {
+  flex-shrink: 5;
+}
+
+.shrink-6 {
+  flex-shrink: 6;
+}
+
+.shrink-7 {
+  flex-shrink: 7;
+}
+
+.shrink-8 {
+  flex-shrink: 8;
+}
+
+.shrink-9 {
+  flex-shrink: 9;
+}
+
+.shrink-10 {
+  flex-shrink: 10;
+}
+
+.shrink-11 {
+  flex-shrink: 11;
+}
+
+.shrink-12 {
+  flex-shrink: 12;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.middle {
+  justify-content: center;
+  align-items: center;
+}
+
+.top-middle,
+.middle-top {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.right-top,
+.top-right {
+  justify-content: flex-end;
+}
+
+.right-middle,
+.middle-right {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.right-bottom,
+.bottom-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.bottom-middle,
+.middle-bottom {
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bottom-left,
+.left-bottom {
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.left-middle,
+.middle-left {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.left-top,
+.top-left {
+  justify-content: flex-start;
+}
+
+/* end wxapp-flex-grid */
+
+view {
+  display: block;
+}
+
+view,
+text {
+  font-size: 0.8rem;
+}
