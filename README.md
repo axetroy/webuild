@@ -61,6 +61,7 @@ webuild build --src ./ --output ./dist
 
 * [Official](https://github.com/axetroy/WeBuild/tree/master/examples/official): 官方小程序组件
 * [CNode](https://github.com/axetroy/WeBuild/tree/master/examples/cnode): 试验下的 CNode 社区
+* [Icehome](https://github.com/axetroy/WeBuild/tree/master/examples/icehome): 冰冰家纯手工店小程序
 
 ## Contributing
 
