@@ -7,9 +7,8 @@ Page({
   },
   go2detail: function(e) {
     const data = e.currentTarget.dataset;
-    console.log(data);
     wx.navigateTo({
-      url: '/pages/detail/index?' + paramsify(data)
+      url: '/pages/detail/index?params=' + JSON.stringify(data.name)
     });
   }
 });

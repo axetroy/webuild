@@ -1,3 +1,5 @@
 <view class="container">
   产品详情
+  {{params.name}}
+  {{params.desc}}
 </view>
