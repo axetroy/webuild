@@ -43,10 +43,10 @@
     "imagemin-svgo": "^6.0.0",
     "imagemin-webp": "^4.1.0",
     "lodash.debounce": "^4.0.8",
-    "postcss": "^6.0.14",
+    "postcss": "^6.0.16",
     "precss": "^2.0.0",
     "pretty-data": "^0.40.0",
-    "uglify-js": "^3.3.2",
+    "uglify-js": "^3.3.7",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
