@@ -44,7 +44,7 @@
     "imagemin-webp": "^4.1.0",
     "lodash.debounce": "^4.0.8",
     "postcss": "^6.0.16",
-    "precss": "^2.0.0",
+    "precss": "^3.1.0",
     "pretty-data": "^0.40.0",
     "uglify-js": "^3.3.7",
     "webpack": "^3.10.0"
