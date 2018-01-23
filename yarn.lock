@@ -12,6 +12,10 @@
   version "8.5.2"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
 
+"@types/node@^9.3.0":
+  version "9.3.0"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
+
 "@types/source-map@*":
   version "0.5.2"
   resolved "https://registry.npmjs.org/@types/source-map/-/source-map-0.5.2.tgz#973459e744cc7445c85b97f770275b479b138e08"
@@ -26,9 +30,9 @@
   dependencies:
     "@types/source-map" "*"
 
-"@types/webpack@^3.8.1":
-  version "3.8.1"
-  resolved "https://registry.npmjs.org/@types/webpack/-/webpack-3.8.1.tgz#20c11ea43f1ea7bb09eee4d6d633d830653e5a55"
+"@types/webpack@^3.8.3":
+  version "3.8.3"
+  resolved "http://registry.npm.taobao.org/@types/webpack/download/@types/webpack-3.8.3.tgz#92501a9c7e41a560aa9b354345768b7348d80764"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
@@ -4846,7 +4850,7 @@ postcss@^6.0.1, postcss@^6.0.11, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.
 
 postcss@^6.0.16:
   version "6.0.16"
-  resolved "https://registry.npmjs.org/postcss/-/postcss-6.0.16.tgz#112e2fe2a6d2109be0957687243170ea5589e146"
+  resolved "http://registry.npm.taobao.org/postcss/download/postcss-6.0.16.tgz#112e2fe2a6d2109be0957687243170ea5589e146"
   dependencies:
     chalk "^2.3.0"
     source-map "^0.6.1"
@@ -5994,9 +5998,9 @@ uglify-js@^2.8.29:
   optionalDependencies:
     uglify-to-browserify "~1.0.0"
 
-uglify-js@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.3.7.tgz#28463e7c7451f89061d2b235e30925bf5625e14d"
+uglify-js@^3.3.8:
+  version "3.3.8"
+  resolved "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.3.8.tgz#51e9a5db73afb53ac98603d08224edcd0be45fd8"
   dependencies:
     commander "~2.13.0"
     source-map "~0.6.1"
