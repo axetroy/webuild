@@ -1,8 +1,8 @@
-const path = require('path');
-const fs = require('fs-extra');
-const chokidar = require('chokidar');
-const { query } = require('./utils');
-const CONFIG = require('./config');
+const path = require("path");
+const fs = require("fs-extra");
+const chokidar = require("chokidar");
+const { query } = require("./utils");
+const CONFIG = require("./config");
 
 class App {
   constructor() {
@@ -20,42 +20,42 @@ class App {
     let builder = null;
 
     switch (f.ext) {
-      case '.js':
-      case '.jsx':
-      case '.ts':
-      case '.tsx':
-        builder = 'js';
+      case ".js":
+      case ".jsx":
+      case ".ts":
+      case ".tsx":
+        builder = "js";
         break;
-      case '.css':
-      case '.scss':
-      case '.less':
-      case '.sass':
-      case '.wxss':
-        builder = 'css';
+      case ".css":
+      case ".scss":
+      case ".less":
+      case ".sass":
+      case ".wxss":
+        builder = "css";
         break;
-      case '.xml':
-      case '.wxml':
-        builder = 'xml';
+      case ".xml":
+      case ".wxml":
+        builder = "xml";
         break;
-      case '.json':
-        builder = 'json';
+      case ".json":
+        builder = "json";
         break;
-      case '.yaml':
-      case '.yml':
-        builder = 'file';
+      case ".yaml":
+      case ".yml":
+        builder = "file";
         break;
-      case '.png':
-      case '.jpg':
-      case '.jpeg':
-      case '.mozjpeg':
-      case '.gif':
-      case '.svg':
-      case '.webp':
-        builder = 'image';
+      case ".png":
+      case ".jpg":
+      case ".jpeg":
+      case ".mozjpeg":
+      case ".gif":
+      case ".svg":
+      case ".webp":
+        builder = "image";
         break;
       default:
         if (f.ext) {
-          builder = 'file';
+          builder = "file";
         }
     }
 
@@ -102,17 +102,17 @@ class App {
    * @returns {Promise.<void>}
    */
   async build() {
-    const files = await query(path.join(CONFIG.paths.src, '**', '*'), {});
+    const files = await query(path.join(CONFIG.paths.src, "**", "*"), {});
 
     // 加载所有文件
     while (files.length) {
       const absFilePath = files.shift();
-      this.dispatch(absFilePath, 'load');
+      this.dispatch(absFilePath, "load");
     }
 
-    const builders = Object.keys(this.builder);
-
-    await Promise.all(builders.map(builder => this.builder[builder].all()));
+    await Promise.all(
+      Object.keys(this.builder).map(builder => this.builder[builder].all())
+    );
   }
 
   /**
@@ -128,16 +128,16 @@ class App {
       .watch(r, {
         ignored: /((^|[\/\\])\..)|(___jb_tmp___$)|(log$)/
       })
-      .on('add', filePath => {
+      .on("add", filePath => {
         console.info(`[ADD]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
         const stat = fs.statSync(absFilePath);
         if (stat.isFile()) {
           // load this new file
-          this.dispatch(absFilePath, 'load');
+          this.dispatch(absFilePath, "load");
         }
       })
-      .on('change', filePath => {
+      .on("change", filePath => {
         console.info(`[CHANGE]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
         const stat = fs.statSync(absFilePath);
@@ -148,11 +148,11 @@ class App {
           });
         }
       })
-      .on('unlink', filePath => {
+      .on("unlink", filePath => {
         console.info(`[DELETE]: ${filePath}`);
         const absFilePath = path.join(process.cwd(), filePath);
         // unload this file
-        this.dispatch(absFilePath, 'unload');
+        this.dispatch(absFilePath, "unload");
       });
   }
 }
@@ -160,11 +160,11 @@ class App {
 const app = new App();
 
 app
-  .register(require('./builder/js'))
-  .register(require('./builder/css'))
-  .register(require('./builder/xml'))
-  .register(require('./builder/file'))
-  .register(require('./builder/image'))
-  .register(require('./builder/json'));
+  .register(require("./builder/js"))
+  .register(require("./builder/css"))
+  .register(require("./builder/xml"))
+  .register(require("./builder/file"))
+  .register(require("./builder/image"))
+  .register(require("./builder/json"));
 
 module.exports = app;
