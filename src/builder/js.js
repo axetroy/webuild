@@ -1,20 +1,20 @@
 /**
  * Created by axetroy on 2017/7/2.
  */
-const path = require('path');
-const webpack = require('webpack');
-const fs = require('fs-extra');
-const babel = require('babel-core');
-const UglifyJS = require('uglify-js');
-const utils = require('../utils');
-const Builder = require('../Builder');
+const path = require("path");
+const webpack = require("webpack");
+const fs = require("fs-extra");
+const babel = require("babel-core");
+const UglifyJS = require("uglify-js");
+const utils = require("../utils");
+const Builder = require("../Builder");
 
-const CONFIG = require('../config');
+const CONFIG = require("../config");
 
 // 输出文件
-const BUNDLE_FILENAME = 'm.js';
+const BUNDLE_FILENAME = "m.js";
 // 缓存文件
-const TEMP_FILENAME = 'temp.js';
+const TEMP_FILENAME = "temp.js";
 
 class Module {
   constructor() {
@@ -71,7 +71,7 @@ class Module {
     return `// Generate By Webpack Module
 module.exports = function(moduleId) {
   const webpackModule = {};
-  ${templates.join('\n')}
+  ${templates.join("\n")}
 
   return webpackModule[moduleId] ? webpackModule[moduleId]() : {};
 };`;
@@ -88,7 +88,7 @@ module.exports = function(moduleId) {
 
     // 创建缓存文件作为webpack的入口文件
     await fs.ensureFile(inputFile);
-    await fs.writeFile(inputFile, this.content, 'utf8');
+    await fs.writeFile(inputFile, this.content, "utf8");
 
     const outputPathInfo = path.parse(outputFile);
 
@@ -100,19 +100,19 @@ module.exports = function(moduleId) {
           output: {
             path: outputPathInfo.dir,
             filename: outputPathInfo.name + outputPathInfo.ext,
-            library: 'g',
-            libraryTarget: 'commonjs2'
+            library: "g",
+            libraryTarget: "commonjs2"
           },
           resolve: {
-            modules: ['node_modules'],
-            extensions: ['.coffee', '.js', '.ts']
+            modules: ["node_modules"],
+            extensions: [".coffee", ".js", ".ts"]
           },
           module: {
             loaders: [
               {
                 test: /\.(jsx|js)?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader'
+                loader: "babel-loader"
               }
             ]
           },
@@ -136,19 +136,19 @@ module.exports = function(moduleId) {
           output: {
             path: outputPathInfo.dir,
             filename: outputPathInfo.name + outputPathInfo.ext,
-            library: 'g',
-            libraryTarget: 'commonjs2'
+            library: "g",
+            libraryTarget: "commonjs2"
           },
           resolve: {
-            modules: ['node_modules'],
-            extensions: ['.coffee', '.js', '.ts']
+            modules: ["node_modules"],
+            extensions: [".coffee", ".js", ".ts"]
           },
           module: {
             loaders: [
               {
                 test: /\.(jsx|js)?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader'
+                loader: "babel-loader"
               }
             ]
           },
@@ -167,7 +167,7 @@ module.exports = function(moduleId) {
     if (CONFIG.isProduction) {
       // ugly
       const uglifyResult = UglifyJS.minify(
-        await fs.readFile(outputFile, 'utf8')
+        await fs.readFile(outputFile, "utf8")
       );
       await fs.writeFile(outputFile, uglifyResult.code);
     }
@@ -187,18 +187,18 @@ module.exports = function(moduleId) {
         {
           env: {
             production: {
-              presets: ['minify']
+              presets: ["minify"]
             }
           },
-          presets: ['flow', 'env', 'stage-1', 'stage-2', 'stage-3'],
+          presets: ["flow", "env", "stage-1", "stage-2", "stage-3"],
           plugins: [
             [
-              'transform-runtime',
+              "transform-runtime",
               {
                 helpers: false,
                 polyfill: false,
                 regenerator: true,
-                moduleName: 'babel-runtime'
+                moduleName: "babel-runtime"
               }
             ]
           ]
@@ -223,18 +223,10 @@ ${result.code}
 
 const webpackModule = new Module();
 
-// 生成js文件相对于main.js的路径，要require这个main.js
-function getRelative(file) {
-  return utils
-    .unixify(path.relative(file, path.join(CONFIG.paths.dist, BUNDLE_FILENAME)))
-    .replace(/^\.\.\//, './')
-    .replace(/^\/?\.+\/?/, './');
-}
-
 class JsBuilder extends Builder {
   constructor() {
     super();
-    this.name = 'js';
+    this.name = "js";
   }
 
   /**
@@ -269,11 +261,13 @@ class JsBuilder extends Builder {
       // 把各文件移动到build目录下
       const files = [].concat(Object.keys(this.files));
 
+      const absBundleFilePath = path.join(CONFIG.paths.dist, BUNDLE_FILENAME);
+
       await webpackModule.pack(
-        path.join(CONFIG.paths.dist, BUNDLE_FILENAME),
+        absBundleFilePath,
         [
           new webpack.DefinePlugin({
-            'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`
+            "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`
           })
         ].concat(CONFIG.isProduction ? [] : [])
       );
@@ -295,16 +289,13 @@ class JsBuilder extends Builder {
         // 确保输出文件存在
         await fs.ensureFile(absDistFilePath);
 
-        // 引用主体包
-        const requireFile = path.normalize(
-          getRelative(absDistFilePath).replace(/\.js$/, '')
-        );
-
         // 写入文件
         await fs.writeFile(
           absDistFilePath,
-          `require("${utils.unixify(requireFile)}")(${id});`,
-          'utf8'
+          `require("${utils.unixify(
+            utils.resolveRequire(absDistFilePath, absBundleFilePath)
+          )}")(${id});`,
+          "utf8"
         );
       }
     } catch (err) {
