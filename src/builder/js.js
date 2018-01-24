@@ -6,9 +6,9 @@ const { promisify } = require("util");
 const webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
 const babel = require("babel-core");
-const UglifyJS = require("uglify-js");
 const utils = require("../utils");
 const Builder = require("../Builder");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const CONFIG = require("../config")();
 
@@ -143,17 +143,25 @@ module.exports = function(moduleId) {
           }
         ]
       },
-      plugins: plugins.filter(v => v)
+      plugins: plugins
+        .filter(v => v)
+        // 生产环境下压缩
+        .concat(
+          CONFIG.isProduction
+            ? [
+                new UglifyJSPlugin({
+                  uglifyOptions: {
+                    ecma: 5,
+                    compress: {
+                      drop_console: true,
+                      drop_debugger: true
+                    }
+                  }
+                })
+              ]
+            : []
+        )
     });
-
-    // 生产环境下进行压缩
-    if (CONFIG.isProduction) {
-      // ugly
-      const uglifyResult = UglifyJS.minify(
-        await fs.readFile(outputFile, "utf8")
-      );
-      await fs.writeFile(outputFile, uglifyResult.code);
-    }
   }
 
   /**
@@ -186,10 +194,10 @@ module.exports = function(moduleId) {
     await fs.ensureFile(outputFile);
     await fs.writeFile(
       outputFile,
-      `// wrapper start
+      `/* wrapper start */
 ;(function(){
 ${result.code}
-// wrapper end
+/* wrapper end */
 })();`
     );
   }
