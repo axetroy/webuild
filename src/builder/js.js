@@ -230,15 +230,13 @@ function getGlobal() {
   Object.defineProperty(global, "clearTimeout", { value: clearTimeout });
   Object.defineProperty(global, "setInterval", { value: setInterval });
   Object.defineProperty(global, "clearInterval", { value: clearInterval });
-  Object.defineProperty(global, "require", { value: require });
-  Object.defineProperty(global, "modules", { value: modules });
 
   return global;
 }
-;(function(global){
+;(function(global, setTimeout, clearTimeout, setInterval, clearInterval){
 ${result.code}
 /* wrapper end */
-})(getGlobal());`
+})(getGlobal(), setTimeout, clearTimeout, setInterval, clearInterval);`
     );
   }
 }
