@@ -10,7 +10,7 @@ const imageminWebp = require('imagemin-webp');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminGifsicle = require('imagemin-gifsicle');
 const imageminSvgo = require('imagemin-svgo');
-const CONFIG = require('../config');
+const CONFIG = require('../config')();
 
 class ImageBuilder extends Builder {
   constructor() {

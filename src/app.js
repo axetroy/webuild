@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const chokidar = require("chokidar");
 const { query } = require("./utils");
-const CONFIG = require("./config");
+const CONFIG = require("./config")();
 
 class App {
   constructor() {

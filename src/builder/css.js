@@ -7,7 +7,7 @@ const postcss = require("postcss");
 const precss = require("precss");
 const cssnano = require("cssnano");
 const Builder = require("../Builder");
-const CONFIG = require("../config");
+const CONFIG = require("../config")();
 
 class CssBuilder extends Builder {
   constructor() {

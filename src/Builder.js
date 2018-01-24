@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
-const CONFIG = require('./config');
+const CONFIG = require('./config')();
 
 class Builder {
   constructor() {

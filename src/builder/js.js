@@ -9,7 +9,7 @@ const UglifyJS = require("uglify-js");
 const utils = require("../utils");
 const Builder = require("../Builder");
 
-const CONFIG = require("../config");
+const CONFIG = require("../config")();
 
 // 输出文件
 const BUNDLE_FILENAME = "m.js";
