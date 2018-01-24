@@ -6,7 +6,8 @@
     "webuild": "./bin/webuild"
   },
   "scripts": {
-    "test": "./bin/webuild build --src ./examples/official/src --output ./dist"
+    "start": "./bin/webuild dev --src ./examples/official/src --output ./dist",
+    "build": "./bin/webuild build --src ./examples/official/src --output ./dist"
   },
   "repository": {
     "type": "git",

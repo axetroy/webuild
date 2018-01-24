@@ -195,10 +195,50 @@ module.exports = function(moduleId) {
     await fs.writeFile(
       outputFile,
       `/* wrapper start */
-;(function(){
+function getGlobal() {
+  const g = typeof wx !== "undefined" ? wx : this || {};
+  const global = {};
+  for (let key in g) {
+    if (g.hasOwnProperty(key)) {
+      Object.defineProperty(global, key, {
+        get: function() {
+          return g[key];
+        }
+      });
+      if (typeof g[key] === "function" && !/sync$/.test(key)) {
+        Object.defineProperty(global, key + "Async", {
+          get: function(argv) {
+            return new Promise(function(resolve, reject) {
+              g[key](
+                Object.assign({}, argv, {
+                  success: function(data) {
+                    resolve(data);
+                  },
+                  fail: function(err) {
+                    reject(err);
+                  }
+                })
+              );
+            });
+          }
+        });
+      }
+    }
+  }
+
+  Object.defineProperty(global, "setTimeout", { value: setTimeout });
+  Object.defineProperty(global, "clearTimeout", { value: clearTimeout });
+  Object.defineProperty(global, "setInterval", { value: setInterval });
+  Object.defineProperty(global, "clearInterval", { value: clearInterval });
+  Object.defineProperty(global, "require", { value: require });
+  Object.defineProperty(global, "modules", { value: modules });
+
+  return global;
+}
+;(function(global){
 ${result.code}
 /* wrapper end */
-})();`
+})(getGlobal());`
     );
   }
 }
