@@ -2,7 +2,8 @@
  * Created by axetroy on 2017/7/2.
  */
 const path = require("path");
-const webpack = require("webpack");
+const { promisify } = require("util");
+const webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
 const babel = require("babel-core");
 const UglifyJS = require("uglify-js");
@@ -93,77 +94,59 @@ module.exports = function(moduleId) {
     const outputPathInfo = path.parse(outputFile);
 
     // 使用webpack打包缓存文件
-    await new Promise((resolve, reject) => {
-      webpack(
-        {
-          entry: inputFile,
-          output: {
-            path: outputPathInfo.dir,
-            filename: outputPathInfo.name + outputPathInfo.ext,
-            library: "g",
-            libraryTarget: "commonjs2"
-          },
-          resolve: {
-            modules: ["node_modules"],
-            extensions: [".coffee", ".js", ".ts"]
-          },
-          module: {
-            loaders: [
-              {
-                test: /\.(jsx|js)?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: "babel-loader"
-              }
-            ]
-          },
-          plugins: plugins.filter(v => v)
-        },
-        function(err, stdout) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
+    await webpack({
+      entry: inputFile,
+      output: {
+        path: outputPathInfo.dir,
+        filename: outputPathInfo.name + outputPathInfo.ext,
+        library: "g",
+        libraryTarget: "commonjs2"
+      },
+      resolve: {
+        modules: ["node_modules"],
+        extensions: [".coffee", ".js", ".ts"]
+      },
+      module: {
+        loaders: [
+          {
+            test: /\.(jsx|js)?$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: "babel-loader"
           }
-        }
-      );
+        ]
+      },
+      plugins: plugins.filter(v => v)
     });
+
+    // 代码转化为ES5
     await this.transform(outputFile, outputFile);
 
-    await new Promise((resolve, reject) => {
-      webpack(
-        {
-          entry: outputFile,
-          output: {
-            path: outputPathInfo.dir,
-            filename: outputPathInfo.name + outputPathInfo.ext,
-            library: "g",
-            libraryTarget: "commonjs2"
-          },
-          resolve: {
-            modules: ["node_modules"],
-            extensions: [".coffee", ".js", ".ts"]
-          },
-          module: {
-            loaders: [
-              {
-                test: /\.(jsx|js)?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: "babel-loader"
-              }
-            ]
-          },
-          plugins: plugins.filter(v => v)
-        },
-        function(err, stdout) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
+    // 再一次打包
+    await webpack({
+      entry: outputFile,
+      output: {
+        path: outputPathInfo.dir,
+        filename: outputPathInfo.name + outputPathInfo.ext,
+        library: "g",
+        libraryTarget: "commonjs2"
+      },
+      resolve: {
+        modules: ["node_modules"],
+        extensions: [".coffee", ".js", ".ts"]
+      },
+      module: {
+        loaders: [
+          {
+            test: /\.(jsx|js)?$/,
+            exclude: /(node_modules|bower_components)/,
+            loader: "babel-loader"
           }
-        }
-      );
+        ]
+      },
+      plugins: plugins.filter(v => v)
     });
 
+    // 生产环境下进行压缩
     if (CONFIG.isProduction) {
       // ugly
       const uglifyResult = UglifyJS.minify(
@@ -181,33 +164,24 @@ module.exports = function(moduleId) {
    */
   async transform(inputFile, outputFile) {
     await fs.ensureFile(inputFile);
-    const result = await new Promise((resolve, reject) => {
-      babel.transformFile(
-        inputFile,
-        {
-          env: {
-            production: {
-              presets: ["minify"]
-            }
-          },
-          presets: ["flow", "env", "stage-1", "stage-2", "stage-3"],
-          plugins: [
-            [
-              "transform-runtime",
-              {
-                helpers: false,
-                polyfill: false,
-                regenerator: true,
-                moduleName: "babel-runtime"
-              }
-            ]
-          ]
-        },
-        function(err, result) {
-          if (err) return reject(err);
-          resolve(result);
+    const result = await promisify(babel.transformFile)(inputFile, {
+      env: {
+        production: {
+          presets: ["minify"]
         }
-      );
+      },
+      presets: ["flow", "env", "stage-1", "stage-2", "stage-3"],
+      plugins: [
+        [
+          "transform-runtime",
+          {
+            helpers: false,
+            polyfill: false,
+            regenerator: true,
+            moduleName: "babel-runtime"
+          }
+        ]
+      ]
     });
     await fs.ensureFile(outputFile);
     await fs.writeFile(
@@ -248,7 +222,7 @@ class JsBuilder extends Builder {
     super.unload(filePath);
   }
 
-  one() {
+  one(absFilePath) {
     return this.all();
   }
 
