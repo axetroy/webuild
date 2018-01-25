@@ -22,6 +22,14 @@ class Module {
     this.id = 0;
     this.modules = [];
     this.runtime = ""; // webuild runtime code
+    this.env = {
+      NODE_ENV: process.env.NODE_ENV || "development"
+    };
+    for (let key in process.env) {
+      if (key.indexOf("WEBUILD_") >= 0) {
+        this.env[key] = process.env[key];
+      }
+    }
   }
 
   /*
@@ -117,7 +125,8 @@ module.exports = function(moduleId) {
         ]
       },
       node: {
-        global: false
+        global: false,
+        process: false
       },
       plugins: plugins.filter(v => v)
     });
@@ -148,7 +157,8 @@ module.exports = function(moduleId) {
         ]
       },
       node: {
-        global: false
+        global: false,
+        process: false
       },
       plugins: plugins
         .filter(v => v)
@@ -222,7 +232,7 @@ ${this.runtime}
 
 const __global__ = getGlobal()
 
-__global__.process.env = ${JSON.stringify({ NODE_ENV: process.env.NODE_ENV })}
+__global__.process.env = ${JSON.stringify(this.env)}
 
 /* Source Code start */
 ;(function(global, process){
