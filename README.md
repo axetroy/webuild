@@ -1,4 +1,4 @@
-## 零配置, 无侵入式的微信/支付宝小程序开发工具
+## 零配置, 无侵入式的小程序开发工具
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
@@ -8,7 +8,7 @@
 
 特性:
 
-* [ ] 支持微信/支付宝小程序
+* [x] 支持微信/支付宝小程序
 * [x] 零配置, 你所需要的, 都已经有了
 * [x] 无入侵. 兼容原生开发方式. 不用更改一行代码.
 * [x] 添加global对象，以Async后缀的方法名则返回Promise，不需要传入success，fail回调函数
@@ -58,7 +58,9 @@ webuild build --src ./ --output ./dist
 
 源码 src 已被编译至 dist 目录.
 
-打开微信开发者工具, 加载 dist 目录即可
+打开微信/支付宝开发者工具, 加载 dist 目录即可
+
+> 需要关闭 ``ES6转ES5``　选项
 
 ## Example
 
