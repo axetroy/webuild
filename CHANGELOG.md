@@ -1,3 +1,21 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/axetroy/WeBuild/compare/v0.2.1...v0.3.0) (2018-01-25)
+
+
+### Bug Fixes
+
+* 修复runtime的一些问题 ([95625be](https://github.com/axetroy/WeBuild/commit/95625be))
+
+
+### Features
+
+* support runtime ([6eae591](https://github.com/axetroy/WeBuild/commit/6eae591))
+* 修复process全局变量不正确的问题，支持自定义环境变量 ([75640ae](https://github.com/axetroy/WeBuild/commit/75640ae))
+* 全局变量支持支付宝小程序 ([1a02bf9](https://github.com/axetroy/WeBuild/commit/1a02bf9))
+* 支持支付宝小程序 ([74f1f1a](https://github.com/axetroy/WeBuild/commit/74f1f1a))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/axetroy/WeBuild/compare/v0.2.0...v0.2.1) (2018-01-24)
 
