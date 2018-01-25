@@ -21,6 +21,7 @@ class Module {
   constructor() {
     this.id = 0;
     this.modules = [];
+    this.runtime = ""; // webuild runtime code
   }
 
   /*
@@ -192,51 +193,33 @@ module.exports = function(moduleId) {
       ]
     });
     await fs.ensureFile(outputFile);
+
+    // 如果没有编译过运行时代码，那么编译一次
+    if (!this.runtime) {
+      const globalFile = path.join(__dirname, "..", "runtime", "global.js");
+      const runtime = await babel.transform(
+        await fs.readFile(globalFile, "utf8"),
+        {
+          presets: ["env"]
+        }
+      );
+      this.runtime = runtime.code;
+    }
+
     await fs.writeFile(
       outputFile,
-      `/* wrapper start */
-function getGlobal() {
-  const g = typeof wx !== "undefined" ? wx : this || {};
-  const global = {};
-  for (let key in g) {
-    if (g.hasOwnProperty(key)) {
-      Object.defineProperty(global, key, {
-        get: function() {
-          return g[key];
-        }
-      });
-      if (typeof g[key] === "function" && !/sync$/.test(key)) {
-        Object.defineProperty(global, key + "Async", {
-          get: function(argv) {
-            return new Promise(function(resolve, reject) {
-              g[key](
-                Object.assign({}, argv, {
-                  success: function(data) {
-                    resolve(data);
-                  },
-                  fail: function(err) {
-                    reject(err);
-                  }
-                })
-              );
-            });
-          }
-        });
-      }
-    }
-  }
-
-  Object.defineProperty(global, "setTimeout", { value: setTimeout });
-  Object.defineProperty(global, "clearTimeout", { value: clearTimeout });
-  Object.defineProperty(global, "setInterval", { value: setInterval });
-  Object.defineProperty(global, "clearInterval", { value: clearInterval });
-
-  return global;
-}
-;(function(global, setTimeout, clearTimeout, setInterval, clearInterval){
+      ` /* Generate By webuild */
+      
+/* webuild runtime start */
+${this.runtime}
+/* webuild runtime end */
+      
+/* Source Code start */
+;(function(global){
 ${result.code}
-/* wrapper end */
-})(getGlobal(), setTimeout, clearTimeout, setInterval, clearInterval);`
+})(getGlobal());
+/* Source Code end */
+`
     );
   }
 }
