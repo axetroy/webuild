@@ -8,6 +8,7 @@ const cwd = process.cwd();
 
 const DEFAULT_CONFIG = {
   isProduction: process.env.NODE_ENV === "production",
+  type: "wechat", // 默认的编译类型为微信小程序
   paths: {
     cwd: cwd,
     root: cwd,

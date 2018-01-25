@@ -13,7 +13,10 @@ class CssBuilder extends Builder {
   constructor() {
     super();
     this.name = "css";
-    this.ouputExt = ".wxss";
+    this.ouputExt =
+      CONFIG.type === "wechat"
+        ? ".wxss"
+        : CONFIG.type === "alipay" ? ".axss" : ".css";
   }
 
   async one(absFile) {
@@ -23,6 +26,8 @@ class CssBuilder extends Builder {
       .replace(/\.scss$/, this.ouputExt)
       .replace(/\.less$/, this.ouputExt)
       .replace(/\.sass$/, this.ouputExt)
+      .replace(/\.wxss/, this.ouputExt)
+      .replace(/\.axss/, this.ouputExt)
       .replace(/\.css$/, this.ouputExt);
 
     await fs.ensureFile(distFilePath);
