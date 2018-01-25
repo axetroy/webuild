@@ -34,8 +34,13 @@ function getGlobal() {
     setTimeout,
     clearTimeout,
     setInterval,
-    clearInterval
+    clearInterval,
+    process: {
+      env: {}
+    }
   };
+
+  global.global = global;
 
   for (let key in g) {
     if (g.hasOwnProperty(key)) {
@@ -48,12 +53,14 @@ function getGlobal() {
       // promisify all method with Async suffix
       if (typeof g[key] === "function" && !/sync$/.test(key)) {
         Object.defineProperty(global, key + "Async", {
-          get(argv) {
-            return new Promise(function(resolve, reject) {
-              const success = compose(argv.success, data => resolve(data));
-              const fail = compose(argv.fail, err => reject(err));
-              g[key](Object.assign({}, argv, { success, fail }));
-            });
+          get() {
+            return function(argv) {
+              return new Promise(function(resolve, reject) {
+                const success = compose(argv.success, data => resolve(data));
+                const fail = compose(argv.fail, err => reject(err));
+                g[key](Object.assign({}, argv, { success, fail }));
+              });
+            };
           }
         });
       }

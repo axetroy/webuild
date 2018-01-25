@@ -116,6 +116,9 @@ module.exports = function(moduleId) {
           }
         ]
       },
+      node: {
+        global: false
+      },
       plugins: plugins.filter(v => v)
     });
 
@@ -143,6 +146,9 @@ module.exports = function(moduleId) {
             loader: "babel-loader"
           }
         ]
+      },
+      node: {
+        global: false
       },
       plugins: plugins
         .filter(v => v)
@@ -213,11 +219,15 @@ module.exports = function(moduleId) {
 /* webuild runtime start */
 ${this.runtime}
 /* webuild runtime end */
-      
+
+const __global__ = getGlobal()
+
+__global__.process.env = ${JSON.stringify({ NODE_ENV: process.env.NODE_ENV })}
+
 /* Source Code start */
-;(function(global){
+;(function(global, process){
 ${result.code}
-})(getGlobal());
+}).call(__global__, __global__, __global__.process);
 /* Source Code end */
 `
     );
@@ -266,14 +276,7 @@ class JsBuilder extends Builder {
 
       const absBundleFilePath = path.join(CONFIG.paths.dist, BUNDLE_FILENAME);
 
-      await webpackModule.pack(
-        absBundleFilePath,
-        [
-          new webpack.DefinePlugin({
-            "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`
-          })
-        ].concat(CONFIG.isProduction ? [] : [])
-      );
+      await webpackModule.pack(absBundleFilePath);
 
       while (files.length) {
         const absSourceFilePath = files.shift();
