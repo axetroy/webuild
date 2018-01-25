@@ -62,6 +62,41 @@ webuild build --src ./ --output ./dist
 
 > 需要关闭 ``ES6转ES5``　选项
 
+## 命令行
+
+```bash
+$ webuild --help
+[1568]: start.
+
+   webuild 0.3.0 - 零配置无侵入式的微信小程序开发工具
+     
+   USAGE
+
+     webuild 
+
+   OPTIONS
+
+     --src <dir>         源码目录                         optional      default: "src"   
+     --output <dir>      输出目录                         optional      default: "dist"  
+     --type <type>       微信(wechat)/支付宝(alipay)      optional      default: "wechat"
+
+   COMMANDS
+
+     dev                 以开发模式运行                     
+     build               构建生产模式                       
+     help <command>      Display help for a specific command
+
+   GLOBAL OPTIONS
+
+     -h, --help         Display help                                      
+     -V, --version      Display version                                   
+     --no-color         Disable colors                                    
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages    
+
+[1568]: Exit with code 0.
+```
+
 ## Example
 
 * [Official](https://github.com/axetroy/webuild/tree/master/examples/official): 官方小程序组件
