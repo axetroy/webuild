@@ -20,7 +20,12 @@ function compose() {
  * @returns {*}
  */
 function getGlobal() {
-  const g = typeof wx !== "undefined" ? wx : this || {};
+  const g =
+    typeof wx !== "undefined" // 微信小程序
+      ? wx
+      : typeof my !== "undefined" // 支付宝小程序
+        ? my
+        : this || {};
   const global = {
     Array,
     Date,
