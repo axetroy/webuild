@@ -10,10 +10,9 @@ const availableTypes = {
   alipay: 1
 };
 
-const p = program.version(pkg.version).description(pkg.description);
-
-p
-  .command("dev")
+const p = program
+  .version(pkg.version)
+  .description(pkg.description)
   .option("--src <dir>", "源码目录", program.STRING, "src")
   .option("--output <dir>", "输出目录", program.STRING, "dist")
   .option(
@@ -21,7 +20,10 @@ p
     "微信(wechat)/支付宝(alipay)",
     program.STRING,
     "wechat"
-  )
+  );
+
+p
+  .command("dev")
   .description("以开发模式运行")
   .action(function(argv, options) {
     process.env.NODE_ENV = "development";
@@ -44,14 +46,6 @@ p
 
 p
   .command("build")
-  .option("--src <dir>", "源码目录", program.STRING, "src")
-  .option("--output <dir>", "输出目录", program.STRING, "dist")
-  .option(
-    "--type <type>",
-    "微信(wechat)/支付宝(alipay)",
-    program.STRING,
-    "wechat"
-  )
   .description("构建生产模式")
   .action(function(argv, options) {
     process.env.NODE_ENV = "production";
