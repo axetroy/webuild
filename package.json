@@ -1,6 +1,6 @@
 {
   "name": "@axetroy/webuild",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "零配置无侵入式的微信小程序开发工具",
   "bin": {
     "webuild": "./bin/webuild"
