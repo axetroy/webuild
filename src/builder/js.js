@@ -80,9 +80,18 @@ class Module {
 
     return `// Generate By Webpack Module
 module.exports = function(moduleId) {
-  const webpackModule = {};
-  ${templates.join("\n")}
-
+  const webpackModule = {
+    ${this.modules
+      .map(file => {
+        return `
+    "${file.id}": function(){
+      return require("${utils.unixify(
+        path.relative(CONFIG.paths.temp, file.path)
+      )}")
+    }`;
+      })
+      .join(",")}
+  };
   return webpackModule[moduleId] ? webpackModule[moduleId]() : {};
 };`;
   }
