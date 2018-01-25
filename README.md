@@ -19,7 +19,7 @@
 * [x] WXSS/WXML/JSON 压缩
 * [x] 支持使用css/sass/less代替wxss，xml代替wxml
 * [ ] 基于 AST 压缩 WXSS/WXML(把 className 替换成 1 个字符)
-* [x] 支持环境变量``process.env``中的``NODE_ENV``.　也可以自定义变量``WEBUILD_XX``
+* [x] 支持环境变量``process.env``, 默认有``NODE_ENV``.　也可以自定义变量``WEBUILD_XX``
 
 **该项目为开发工具, 不是小程序框架**.
 
