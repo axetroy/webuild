@@ -35,6 +35,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "caporal": "^0.9.0",
     "chokidar": "^2.0.0",
     "cssnano": "^3.10.0",
