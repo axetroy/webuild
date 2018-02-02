@@ -135,8 +135,8 @@ module.exports = function(moduleId) {
         loaders: [
           {
             test: /\.(jsx|js)?$/,
-            exclude: /(node_modules|bower_components)/
-            // loader: "babel-loader"
+            exclude: /(node_modules|bower_components)/,
+            loader: "babel-loader"
           }
         ]
       },
@@ -161,7 +161,7 @@ module.exports = function(moduleId) {
       },
       resolve: {
         modules: ["node_modules"],
-        extensions: [".coffee", ".js", ".ts"]
+        extensions: [".js", ".jsx"]
       },
       module: {
         loaders: [
