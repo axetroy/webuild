@@ -1,3 +1,24 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/axetroy/WeBuild/compare/v0.3.1...v0.3.2) (2018-02-02)
+
+
+### Features
+
+* 支持更多特性，修复一些bugs ([c68159c](https://github.com/axetroy/WeBuild/commit/c68159c))
+
+
+
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/axetroy/WeBuild/compare/v0.3.0...v0.3.1) (2018-02-02)
+
+
+### Bug Fixes
+
+* **package:** update babel-preset-minify to version 0.3.0 ([0c31d3b](https://github.com/axetroy/WeBuild/commit/0c31d3b))
+* fix missing babel-runtime ([98c53b2](https://github.com/axetroy/WeBuild/commit/98c53b2))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/axetroy/WeBuild/compare/v0.2.1...v0.3.0) (2018-01-25)
 
