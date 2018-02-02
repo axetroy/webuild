@@ -3,7 +3,7 @@
  */
 const path = require("path");
 const { promisify } = require("util");
-const webpack = promisify(require("webpack"));
+const _webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
 const babel = require("babel-core");
 const utils = require("../utils");
@@ -11,6 +11,15 @@ const Builder = require("../Builder");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const CONFIG = require("../config")();
+
+async function webpack(webpackConfig) {
+  const res = await _webpack(webpackConfig);
+  if (res.errors && res.errors.length) {
+    return Promise.reject(res.errors[0]);
+  } else {
+    return res;
+  }
+}
 
 // 输出文件
 const BUNDLE_FILENAME = "m.js";
@@ -109,27 +118,25 @@ module.exports = function(moduleId) {
     await fs.ensureFile(inputFile);
     await fs.writeFile(inputFile, this.content, "utf8");
 
-    const outputPathInfo = path.parse(outputFile);
-
     // 使用webpack打包缓存文件
     await webpack({
       entry: inputFile,
       output: {
-        path: outputPathInfo.dir,
-        filename: outputPathInfo.name + outputPathInfo.ext,
+        path: path.dirname(outputFile),
+        filename: path.parse(outputFile).base,
         library: "g",
         libraryTarget: "commonjs2"
       },
       resolve: {
         modules: ["node_modules"],
-        extensions: [".coffee", ".js", ".ts"]
+        extensions: [".js", ".jsx"]
       },
       module: {
         loaders: [
           {
             test: /\.(jsx|js)?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: "babel-loader"
+            exclude: /(node_modules|bower_components)/
+            // loader: "babel-loader"
           }
         ]
       },
@@ -147,8 +154,8 @@ module.exports = function(moduleId) {
     await webpack({
       entry: outputFile,
       output: {
-        path: outputPathInfo.dir,
-        filename: outputPathInfo.name + outputPathInfo.ext,
+        path: path.dirname(outputFile),
+        filename: path.parse(outputFile).base,
         library: "g",
         libraryTarget: "commonjs2"
       },
@@ -201,13 +208,25 @@ module.exports = function(moduleId) {
     const result = await promisify(babel.transformFile)(inputFile, {
       env: {
         production: {
-          presets: ["minify"]
+          presets: [require("babel-preset-minify")]
         }
       },
-      presets: ["flow", "env", "stage-1", "stage-2", "stage-3"],
+      presets: [
+        require("babel-preset-flow"),
+        require("babel-preset-env"),
+        require("babel-preset-stage-0"),
+        require("babel-preset-stage-1"),
+        require("babel-preset-stage-2"),
+        require("babel-preset-stage-3")
+      ],
       plugins: [
+        require("babel-plugin-transform-flow-comments"),
+        require("babel-plugin-transform-decorators-legacy").default,
+        require("babel-plugin-transform-es3-member-expression-literals"),
+        require("babel-plugin-transform-es3-property-literals"),
+        require("babel-plugin-transform-strict-mode"),
         [
-          "transform-runtime",
+          require("babel-plugin-transform-runtime"),
           {
             helpers: false,
             polyfill: false,
@@ -225,7 +244,14 @@ module.exports = function(moduleId) {
       const runtime = await babel.transform(
         await fs.readFile(globalFile, "utf8"),
         {
-          presets: ["env"]
+          presets: [
+            require("babel-preset-flow"),
+            require("babel-preset-env"),
+            require("babel-preset-stage-0"),
+            require("babel-preset-stage-1"),
+            require("babel-preset-stage-2"),
+            require("babel-preset-stage-3")
+          ]
         }
       );
       this.runtime = runtime.code;
