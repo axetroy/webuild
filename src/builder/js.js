@@ -8,16 +8,17 @@ const fs = require("fs-extra");
 const babel = require("babel-core");
 const utils = require("../utils");
 const Builder = require("../Builder");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const CONFIG = require("../config")();
 
 async function webpack(webpackConfig) {
-  const res = await _webpack(webpackConfig);
-  if (res.errors && res.errors.length) {
-    return Promise.reject(res.errors[0]);
+  const stats = await _webpack(webpackConfig);
+  const msg = stats.toString({ color: true });
+  if (stats.hasErrors()) {
+    return Promise.reject(msg);
   } else {
-    return res;
+    console.log(msg);
+    return stats;
   }
 }
 
@@ -30,7 +31,6 @@ class Module {
   constructor() {
     this.id = 0;
     this.modules = [];
-    this.runtime = ""; // webuild runtime code
     this.env = {
       NODE_ENV: process.env.NODE_ENV || "development"
     };
@@ -123,7 +123,7 @@ module.exports = function(moduleId) {
       entry: inputFile,
       output: {
         path: path.dirname(outputFile),
-        filename: path.parse(outputFile).base,
+        filename: path.basename(outputFile),
         library: "g",
         libraryTarget: "commonjs2"
       },
@@ -136,7 +136,7 @@ module.exports = function(moduleId) {
           {
             test: /\.(jsx|js)?$/,
             exclude: /(node_modules|bower_components)/,
-            loader: "babel-loader"
+            loader: require("babel-loader").default
           }
         ]
       },
@@ -149,52 +149,6 @@ module.exports = function(moduleId) {
 
     // 代码转化为ES5
     await this.transform(outputFile, outputFile);
-
-    // 再一次打包
-    await webpack({
-      entry: outputFile,
-      output: {
-        path: path.dirname(outputFile),
-        filename: path.parse(outputFile).base,
-        library: "g",
-        libraryTarget: "commonjs2"
-      },
-      resolve: {
-        modules: ["node_modules"],
-        extensions: [".js", ".jsx"]
-      },
-      module: {
-        loaders: [
-          {
-            test: /\.(jsx|js)?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: "babel-loader"
-          }
-        ]
-      },
-      node: {
-        global: false,
-        process: false
-      },
-      plugins: plugins
-        .filter(v => v)
-        // 生产环境下压缩
-        .concat(
-          CONFIG.isProduction
-            ? [
-                new UglifyJSPlugin({
-                  uglifyOptions: {
-                    ecma: 5,
-                    compress: {
-                      drop_console: true,
-                      drop_debugger: true
-                    }
-                  }
-                })
-              ]
-            : []
-        )
-    });
   }
 
   /**
@@ -238,41 +192,13 @@ module.exports = function(moduleId) {
     });
     await fs.ensureFile(outputFile);
 
-    // 如果没有编译过运行时代码，那么编译一次
-    if (!this.runtime) {
-      const globalFile = path.join(__dirname, "..", "runtime", "global.js");
-      const runtime = await babel.transform(
-        await fs.readFile(globalFile, "utf8"),
-        {
-          presets: [
-            require("babel-preset-flow"),
-            require("babel-preset-env"),
-            require("babel-preset-stage-0"),
-            require("babel-preset-stage-1"),
-            require("babel-preset-stage-2"),
-            require("babel-preset-stage-3")
-          ]
-        }
-      );
-      this.runtime = runtime.code;
-    }
-
     await fs.writeFile(
       outputFile,
-      ` /* Generate By webuild */
-      
-/* webuild runtime start */
-${this.runtime}
-/* webuild runtime end */
-
-const __global__ = getGlobal()
-
-__global__.process.env = ${JSON.stringify(this.env)}
-
+      `/* Generate By webuild */      
 /* Source Code start */
-;(function(global, process){
-${result.code}
-}).call(__global__, __global__, __global__.process);
+;!(function(process){
+  ${result.code}
+}).call(this, ${JSON.stringify(this.env)});
 /* Source Code end */
 `
     );
