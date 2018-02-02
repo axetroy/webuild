@@ -47,7 +47,7 @@
 
 ```bash
 # 安装webuild
-npm intsall @axetroy/webuild -g
+npm install @axetroy/webuild -g
 
 # 运行命令, 监听文件变化并打包编译
 webuild dev --src ./ --output ./dist
