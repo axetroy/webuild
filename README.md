@@ -49,10 +49,10 @@
 npm install @axetroy/webuild -g
 
 # 运行命令, 监听文件变化并打包编译
-webuild dev --src ./ --output ./dist
+webuild dev
 
 # 发布项目
-webuild build --src ./ --output ./dist
+webuild build
 ```
 
 源码 src 已被编译至 dist 目录.
