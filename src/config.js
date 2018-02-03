@@ -5,13 +5,15 @@
 const path = require("path");
 
 const cwd = process.cwd();
+const root = path.join(__dirname, "..");
 
 const DEFAULT_CONFIG = {
   isProduction: process.env.NODE_ENV === "production",
   type: "wechat", // 默认的编译类型为微信小程序
   paths: {
-    cwd: cwd,
+    cwd: root,
     root: cwd,
+    node_modules: path.join(root, "node_modules"),
     src: path.join(cwd, "src"),
     dist: path.join(cwd, "build"),
     temp: path.join(cwd, ".temp")

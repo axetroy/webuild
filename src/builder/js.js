@@ -10,6 +10,7 @@ const utils = require("../utils");
 const Builder = require("../Builder");
 
 const CONFIG = require("../config")();
+const paths = CONFIG.paths;
 
 async function webpack(webpackConfig) {
   const stats = await _webpack(webpackConfig);
@@ -139,6 +140,15 @@ module.exports = function(moduleId) {
             loader: require("babel-loader").default
           }
         ]
+      },
+      resolveLoader: {
+        modules: [
+          paths.node_modules,
+          "node_modules",
+          path.join(process.cwd(), "node_modules")
+        ],
+        extensions: [".js", ".jsx", ".json"],
+        mainFields: ["loader", "main"]
       },
       node: {
         global: false,
