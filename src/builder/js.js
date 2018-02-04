@@ -15,12 +15,8 @@ const paths = CONFIG.paths;
 async function webpack(webpackConfig) {
   const stats = await _webpack(webpackConfig);
   const msg = stats.toString({ color: true });
-  if (stats.hasErrors()) {
-    return Promise.reject(msg);
-  } else {
-    console.log(msg);
-    return stats;
-  }
+  console.log(msg);
+  return stats;
 }
 
 const WEBPACK_CONFIG = {
