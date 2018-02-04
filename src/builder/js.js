@@ -52,6 +52,38 @@ const WEBPACK_CONFIG = {
   }
 };
 
+const BABEL_OPTIONS = {
+  env: {
+    production: {
+      presets: [require("babel-preset-minify")]
+    }
+  },
+  presets: [
+    require("babel-preset-flow"),
+    require("babel-preset-env"),
+    require("babel-preset-stage-0"),
+    require("babel-preset-stage-1"),
+    require("babel-preset-stage-2"),
+    require("babel-preset-stage-3")
+  ],
+  plugins: [
+    require("babel-plugin-transform-flow-comments"),
+    require("babel-plugin-transform-decorators-legacy").default,
+    require("babel-plugin-transform-es3-member-expression-literals"),
+    require("babel-plugin-transform-es3-property-literals"),
+    require("babel-plugin-transform-strict-mode"),
+    [
+      require("babel-plugin-transform-runtime"),
+      {
+        helpers: false,
+        polyfill: false,
+        regenerator: true,
+        moduleName: "babel-runtime"
+      }
+    ]
+  ]
+};
+
 // 输出文件
 const BUNDLE_FILENAME = "m.js";
 // 缓存文件
@@ -105,18 +137,6 @@ class Module {
 
   // 获取当前整合的内容
   get content() {
-    const templates = this.modules.map(file => {
-      return `
-  /**
-  Generate By Webpack Module
-  file: ${file.path}
-  id: ${file.id}
-  **/
-  webpackModule[${file.id}] = () => require("${utils.unixify(
-        path.relative(CONFIG.paths.temp, file.path)
-      )}");`;
-    });
-
     return `// Generate By Webpack Module
 module.exports = function(moduleId) {
   const webpackModule = {
@@ -186,37 +206,10 @@ module.exports = function(moduleId) {
    */
   async transform(inputFile, outputFile) {
     await fs.ensureFile(inputFile);
-    const result = await promisify(babel.transformFile)(inputFile, {
-      env: {
-        production: {
-          presets: [require("babel-preset-minify")]
-        }
-      },
-      presets: [
-        require("babel-preset-flow"),
-        require("babel-preset-env"),
-        require("babel-preset-stage-0"),
-        require("babel-preset-stage-1"),
-        require("babel-preset-stage-2"),
-        require("babel-preset-stage-3")
-      ],
-      plugins: [
-        require("babel-plugin-transform-flow-comments"),
-        require("babel-plugin-transform-decorators-legacy").default,
-        require("babel-plugin-transform-es3-member-expression-literals"),
-        require("babel-plugin-transform-es3-property-literals"),
-        require("babel-plugin-transform-strict-mode"),
-        [
-          require("babel-plugin-transform-runtime"),
-          {
-            helpers: false,
-            polyfill: false,
-            regenerator: true,
-            moduleName: "babel-runtime"
-          }
-        ]
-      ]
-    });
+    const result = await promisify(babel.transformFile)(
+      inputFile,
+      BABEL_OPTIONS
+    );
     await fs.ensureFile(outputFile);
 
     await fs.writeFile(
