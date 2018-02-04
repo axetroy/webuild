@@ -23,6 +23,35 @@ async function webpack(webpackConfig) {
   }
 }
 
+const WEBPACK_CONFIG = {
+  resolve: {
+    modules: ["node_modules"],
+    extensions: [".js", ".jsx"]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.(jsx|js)?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader"
+      }
+    ]
+  },
+  resolveLoader: {
+    modules: [
+      paths.node_modules,
+      "node_modules",
+      path.join(process.cwd(), "node_modules")
+    ],
+    extensions: [".js", ".jsx", ".json"],
+    mainFields: ["loader", "main"]
+  },
+  node: {
+    global: false,
+    process: false
+  }
+};
+
 // 输出文件
 const BUNDLE_FILENAME = "m.js";
 // 缓存文件
@@ -128,37 +157,25 @@ module.exports = function(moduleId) {
         library: "g",
         libraryTarget: "commonjs2"
       },
-      resolve: {
-        modules: ["node_modules"],
-        extensions: [".js", ".jsx"]
-      },
-      module: {
-        loaders: [
-          {
-            test: /\.(jsx|js)?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: require("babel-loader").default
-          }
-        ]
-      },
-      resolveLoader: {
-        modules: [
-          paths.node_modules,
-          "node_modules",
-          path.join(process.cwd(), "node_modules")
-        ],
-        extensions: [".js", ".jsx", ".json"],
-        mainFields: ["loader", "main"]
-      },
-      node: {
-        global: false,
-        process: false
-      },
-      plugins: plugins.filter(v => v)
+      plugins: plugins.filter(v => v),
+      ...WEBPACK_CONFIG
     });
 
     // 代码转化为ES5
     await this.transform(outputFile, outputFile);
+
+    // 这里再打包一次，把runtime给打包进来
+    await webpack({
+      entry: outputFile,
+      output: {
+        path: path.dirname(outputFile),
+        filename: path.basename(outputFile),
+        library: "g",
+        libraryTarget: "commonjs2"
+      },
+      plugins: plugins.filter(v => v),
+      ...WEBPACK_CONFIG
+    });
   }
 
   /**

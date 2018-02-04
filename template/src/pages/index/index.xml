@@ -1,0 +1,12 @@
+<view>
+  <view id="container" style="height: {{windowHeight || 0}}px">
+    <view style="display: block;text-align: center">
+      <view>
+        <image id="avatar" mode="" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view>
+        Hello {{userInfo.nickName}}
+      </view>
+    </view>
+  </view>
+</view>

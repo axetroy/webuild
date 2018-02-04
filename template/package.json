@@ -1,0 +1,16 @@
+{
+  "name": "webuild-template",
+  "version": "1.0.0",
+  "description": "The template of webuild",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webuild dev",
+    "build": "webuild build"
+  },
+  "author": "Axetroy",
+  "license": "Apache",
+  "devDependencies": {
+    "@axetroy/webuild": "^0.3.5"
+  },
+  "dependencies": {}
+}
