@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/axetroy/WeBuild#readme",
   "dependencies": {
-    "@axetroy/graceful": "^0.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -53,7 +52,6 @@
     "imagemin-pngquant": "^5.0.1",
     "imagemin-svgo": "^6.0.0",
     "imagemin-webp": "^4.1.0",
-    "lodash.debounce": "^4.0.8",
     "postcss": "^6.0.16",
     "precss": "^2.0.0",
     "pretty-data": "^0.40.0",

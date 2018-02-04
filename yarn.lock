@@ -2,12 +2,6 @@
 # yarn lockfile v1
 
 
-"@axetroy/graceful@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/@axetroy/graceful/-/graceful-0.3.0.tgz#b88b6d1bea1cf96953369cc8f922dcba1536a850"
-  dependencies:
-    tree-kill "^1.2.0"
-
 "@types/node@*":
   version "8.5.2"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
@@ -3973,10 +3967,6 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
 
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
-
 lodash.difference@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/lodash.difference/-/lodash.difference-4.5.0.tgz#9ccb4e505d486b91651345772885a2df27fd017c"
@@ -6252,10 +6242,6 @@ tough-cookie@~2.3.0:
   resolved "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.3.tgz#0b618a5565b6dea90bf3425d04d55edc475a7561"
   dependencies:
     punycode "^1.4.1"
-
-tree-kill@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.0.tgz#5846786237b4239014f05db156b643212d4c6f36"
 
 trim-left-x@^3.0.0:
   version "3.0.0"

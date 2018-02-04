@@ -1,6 +1,35 @@
 #!/usr/bin/env node
 
-require("@axetroy/graceful")();
+function log(message) {
+  process.stdout.write(`[${process.pid}]: ${message}\n`);
+}
+
+log("start");
+
+process
+  .on("exit", function(code) {
+    log(`exit with code ${code}`);
+  })
+  .on("uncaughtException", function() {
+    console.log("Error caught in uncaughtException event:", err);
+  })
+  .on("unhandledRejection", function() {
+    console.error("Unhandled Rejection at:", p, "reason:", reason);
+  });
+
+process.on("SIGINT", signalHandler);
+
+// for windows signal
+// when type <Ctrl>+<Break>
+process.on("SIGBREAK", signalHandler);
+// when close the terminal
+process.on("SIGHUP", signalHandler);
+
+function signalHandler(signal) {
+  signal && log(`Received signal: ${signal}.`);
+  process.exit(0);
+}
+
 const path = require("path");
 const program = require("caporal");
 const fs = require("fs-extra");
