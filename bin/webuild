@@ -20,6 +20,7 @@ const p = program.version(pkg.version).description(pkg.description);
 p
   .command("init")
   .argument("<name>")
+  .description("初始化一个新项目")
   .action(function(argv) {
     fs.copy(
       path.join(paths.root, "template"),

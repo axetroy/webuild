@@ -22,6 +22,20 @@
 
 **该项目为开发工具, 不是小程序框架**.
 
+安装
+
+```bash
+npm install @axetroy/webuild -g
+```
+
+## 快速开始
+
+```bash
+webuild init my-mini-app
+cd my-mini-app
+npm start
+```
+
 ## 如何使用
 
 假设你的小程序项目目录
@@ -45,9 +59,6 @@
 创建一个src目录，并且把小程序项目源码放在src目录下， 并且运行
 
 ```bash
-# 安装webuild
-npm install @axetroy/webuild -g
-
 # 运行命令, 监听文件变化并打包编译
 webuild dev
 
@@ -65,22 +76,16 @@ webuild build
 
 ```bash
 $ webuild --help
-[1568]: start.
 
-   webuild 0.3.0 - 零配置无侵入式的微信小程序开发工具
+   webuild 0.3.5 - 零配置无侵入式的微信小程序开发工具
      
    USAGE
 
-     webuild 
-
-   OPTIONS
-
-     --src <dir>         源码目录                         optional      default: "src"   
-     --output <dir>      输出目录                         optional      default: "dist"  
-     --type <type>       微信(wechat)/支付宝(alipay)      optional      default: "wechat"
+     webuild <command> [options]
 
    COMMANDS
 
+     init <name>         初始化一个新项目                   
      dev                 以开发模式运行                     
      build               构建生产模式                       
      help <command>      Display help for a specific command
@@ -91,9 +96,7 @@ $ webuild --help
      -V, --version      Display version                                   
      --no-color         Disable colors                                    
      --quiet            Quiet mode - only displays warn and error messages
-     -v, --verbose      Verbose mode - will also output debug messages    
-
-[1568]: Exit with code 0.
+     -v, --verbose      Verbose mode - will also output debug messages
 ```
 
 ## Example
