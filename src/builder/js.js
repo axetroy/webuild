@@ -94,15 +94,16 @@ class Module {
     this.id = 0;
     this.modules = [];
     this.env = (() => {
-      this.env = {};
+      const env = {};
       for (let key in process.env) {
         if (process.env.hasOwnProperty(key)) {
           if (key.indexOf("WEBUILD_") >= 0 || key.indexOf("NODE_") >= 0) {
-            this.env[key] = process.env[key];
+            env[key] = process.env[key];
           }
         }
       }
-      this.env.NODE_ENV = this.env.NODE_ENV || "development";
+      env.NODE_ENV = env.NODE_ENV || "development";
+      return env;
     })();
   }
 
@@ -221,7 +222,7 @@ module.exports = function(moduleId) {
 /* Source Code start */
 ;!(function(process){
   ${result.code}
-}).call(this, ${JSON.stringify(this.env)});
+}).call(this, ${JSON.stringify({ env: this.env })});
 /* Source Code end */
 `
     );
