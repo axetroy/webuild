@@ -6,10 +6,10 @@
     "webuild": "./bin/webuild"
   },
   "scripts": {
-    "start": "./bin/webuild dev --src ./examples/official/src --output ./dist",
-    "build:official": "rimraf ./dist && ./bin/webuild build --src ./examples/official/src --output ./dist",
-    "build:icehome": "rimraf ./dist && ./bin/webuild build --src ./examples/icehome/src --output ./dist",
-    "build:cnode": "rimraf ./dist && ./bin/webuild build --src ./examples/cnode/src --output ./dist",
+    "start": "node ./bin/webuild dev --src ./examples/official/src --output ./dist",
+    "build:official": "rimraf ./dist && node ./bin/webuild build --src ./examples/official/src --output ./dist",
+    "build:icehome": "rimraf ./dist && node ./bin/webuild build --src ./examples/icehome/src --output ./dist",
+    "build:cnode": "rimraf ./dist && node ./bin/webuild build --src ./examples/cnode/src --output ./dist",
     "test": "rimraf ./dist && npm run build:official && npm run build:icehome && npm run build:cnode",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
