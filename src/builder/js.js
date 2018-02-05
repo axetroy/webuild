@@ -93,14 +93,16 @@ class Module {
   constructor() {
     this.id = 0;
     this.modules = [];
-    this.env = {
-      NODE_ENV: process.env.NODE_ENV || "development"
-    };
-    for (let key in process.env) {
-      if (key.indexOf("WEBUILD_") >= 0) {
-        this.env[key] = process.env[key];
+    this.env = (() => {
+      for (let key in process.env) {
+        if (process.env.hasOwnProperty(key)) {
+          if (key.indexOf("WEBUILD_") >= 0 || key.indexOf("NODE_") >= 0) {
+            this.env[key] = process.env[key];
+          }
+        }
       }
-    }
+      this.env.NODE_ENV = this.env.NODE_ENV || "development";
+    })();
   }
 
   /*
