@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axetroy/WeBuild.git"
+    "url": "git+https://github.com/axetroy/webuild.git"
   },
   "author": "Axetroy",
   "license": "Apache",
   "bugs": {
-    "url": "https://github.com/axetroy/WeBuild/issues"
+    "url": "https://github.com/axetroy/webuild/issues"
   },
-  "homepage": "https://github.com/axetroy/WeBuild#readme",
+  "homepage": "https://github.com/axetroy/webuild#readme",
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
