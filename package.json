@@ -55,6 +55,7 @@
     "postcss": "^6.0.16",
     "precss": "^2.0.0",
     "pretty-data": "^0.40.0",
+    "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.10.0"
   },
   "devDependencies": {

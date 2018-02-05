@@ -6,6 +6,7 @@ const { promisify } = require("util");
 const _webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
 const babel = require("babel-core");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const utils = require("../utils");
 const Builder = require("../Builder");
 
@@ -271,7 +272,19 @@ class JsBuilder extends Builder {
 
       const absBundleFilePath = path.join(CONFIG.paths.dist, BUNDLE_FILENAME);
 
-      await webpackModule.pack(absBundleFilePath);
+      await webpackModule.pack(absBundleFilePath, [
+        CONFIG.isProduction
+          ? new UglifyJsPlugin({
+              sourceMap: false,
+              uglifyOptions: {
+                ecma: 5,
+                compress: {
+                  drop_console: true
+                }
+              }
+            })
+          : void 0
+      ]);
 
       while (files.length) {
         const absSourceFilePath = files.shift();
