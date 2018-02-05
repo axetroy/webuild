@@ -94,6 +94,7 @@ class Module {
     this.id = 0;
     this.modules = [];
     this.env = (() => {
+      this.env = {};
       for (let key in process.env) {
         if (process.env.hasOwnProperty(key)) {
           if (key.indexOf("WEBUILD_") >= 0 || key.indexOf("NODE_") >= 0) {
