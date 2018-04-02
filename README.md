@@ -1,6 +1,5 @@
 ## 零配置, 无侵入式的小程序开发工具
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
 [![Dependency](https://david-dm.org/axetroy/webuild.svg)](https://david-dm.org/axetroy/webuild)
 [![Prettier](https://img.shields.io/badge/Code%20Style-Prettier-green.svg)](https://github.com/prettier/prettier)
