@@ -25,7 +25,7 @@ const WEBPACK_CONFIG = {
     extensions: [".js", ".jsx"]
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jsx|js)?$/,
         exclude: /(node_modules|bower_components)/,
@@ -45,7 +45,8 @@ const WEBPACK_CONFIG = {
   node: {
     global: false,
     process: false
-  }
+  },
+  mode: CONFIG.isProduction ? 'production' : 'none'
 };
 
 const BABEL_OPTIONS = {
