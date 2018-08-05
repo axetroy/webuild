@@ -6,6 +6,7 @@ const { promisify } = require("util");
 const _webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
 const babel = require("babel-core");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const utils = require("../utils");
 const Builder = require("../Builder");
 
@@ -90,14 +91,18 @@ class Module {
   constructor() {
     this.id = 0;
     this.modules = [];
-    this.env = {
-      NODE_ENV: process.env.NODE_ENV || "development"
-    };
-    for (let key in process.env) {
-      if (key.indexOf("WEBUILD_") >= 0) {
-        this.env[key] = process.env[key];
+    this.env = (() => {
+      const env = {};
+      for (let key in process.env) {
+        if (process.env.hasOwnProperty(key)) {
+          if (key.indexOf("WEBUILD_") >= 0 || key.indexOf("NODE_") >= 0) {
+            env[key] = process.env[key];
+          }
+        }
       }
-    }
+      env.NODE_ENV = env.NODE_ENV || "development";
+      return env;
+    })();
   }
 
   /*
@@ -215,7 +220,7 @@ module.exports = function(moduleId) {
 /* Source Code start */
 ;!(function(process){
   ${result.code}
-}).call(this, ${JSON.stringify(this.env)});
+}).call(this, ${JSON.stringify({ env: this.env })});
 /* Source Code end */
 `
     );
@@ -264,7 +269,19 @@ class JsBuilder extends Builder {
 
       const absBundleFilePath = path.join(CONFIG.paths.dist, BUNDLE_FILENAME);
 
-      await webpackModule.pack(absBundleFilePath);
+      await webpackModule.pack(absBundleFilePath, [
+        CONFIG.isProduction
+          ? new UglifyJsPlugin({
+              sourceMap: false,
+              uglifyOptions: {
+                ecma: 5,
+                compress: {
+                  drop_console: true
+                }
+              }
+            })
+          : void 0
+      ]);
 
       while (files.length) {
         const absSourceFilePath = files.shift();

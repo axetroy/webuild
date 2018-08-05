@@ -1,7 +1,10 @@
 ## 零配置, 无侵入式的小程序开发工具
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/axetroy/webuild.svg?branch=master)](https://travis-ci.org/axetroy/webuild)
+[![Dependency](https://david-dm.org/axetroy/webuild.svg)](https://david-dm.org/axetroy/webuild)
+[![Prettier](https://img.shields.io/badge/Code%20Style-Prettier-green.svg)](https://github.com/prettier/prettier)
+![Node](https://img.shields.io/badge/node-%3E=6.0-blue.svg?style=flat-square)
+[![npm version](https://badge.fury.io/js/%40axetroy%2Fwebuild.svg)](https://badge.fury.io/js/%40axetroy%2Fwebuild)
 ![License](https://img.shields.io/badge/license-Apache-green.svg)
 
 工欲善其事, 必先利其器
