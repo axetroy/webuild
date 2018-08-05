@@ -5,7 +5,7 @@ const path = require("path");
 const { promisify } = require("util");
 const _webpack = promisify(require("webpack"));
 const fs = require("fs-extra");
-const babel = require("babel-core");
+const babel = require("@babel/core");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const utils = require("../utils");
 const Builder = require("../Builder");
@@ -20,6 +20,49 @@ async function webpack(webpackConfig) {
   return stats;
 }
 
+const SYNAX_PLUGINS = [
+  require("@babel/plugin-proposal-class-properties"),
+  [
+    require("@babel/plugin-proposal-decorators"),
+    {
+      legacy: true
+    }
+  ],
+  require("@babel/plugin-proposal-do-expressions"),
+  require("@babel/plugin-proposal-export-default-from"),
+  require("@babel/plugin-proposal-export-namespace-from"),
+  require("@babel/plugin-proposal-function-bind"),
+  require("@babel/plugin-proposal-function-sent"),
+  require("@babel/plugin-proposal-logical-assignment-operators"),
+  require("@babel/plugin-proposal-nullish-coalescing-operator"),
+  require("@babel/plugin-proposal-numeric-separator"),
+  require("@babel/plugin-proposal-optional-chaining"),
+  [
+    require("@babel/plugin-proposal-pipeline-operator"),
+    {
+      proposal: "minimal"
+    }
+  ],
+  require("@babel/plugin-proposal-throw-expressions")
+];
+
+const BABEL_OPTIONS = {
+  presets: [require("@babel/preset-flow"), require("@babel/preset-env")],
+  plugins: [
+    require("@babel/plugin-transform-strict-mode"),
+    ...SYNAX_PLUGINS,
+    [
+      require("@babel/plugin-transform-runtime"),
+      {
+        corejs: false,
+        helpers: false,
+        regenerator: true,
+        useESModules: false
+      }
+    ]
+  ]
+};
+
 const WEBPACK_CONFIG = {
   resolve: {
     modules: ["node_modules"],
@@ -30,7 +73,10 @@ const WEBPACK_CONFIG = {
       {
         test: /\.(jsx|js)?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader"
+        loader: "babel-loader",
+        options: {
+          plugins: SYNAX_PLUGINS
+        }
       }
     ]
   },
@@ -47,39 +93,7 @@ const WEBPACK_CONFIG = {
     global: false,
     process: false
   },
-  mode: CONFIG.isProduction ? 'production' : 'none'
-};
-
-const BABEL_OPTIONS = {
-  env: {
-    production: {
-      presets: [require("babel-preset-minify")]
-    }
-  },
-  presets: [
-    require("babel-preset-flow"),
-    require("babel-preset-env"),
-    require("babel-preset-stage-0"),
-    require("babel-preset-stage-1"),
-    require("babel-preset-stage-2"),
-    require("babel-preset-stage-3")
-  ],
-  plugins: [
-    require("babel-plugin-transform-flow-comments"),
-    require("babel-plugin-transform-decorators-legacy").default,
-    require("babel-plugin-transform-es3-member-expression-literals"),
-    require("babel-plugin-transform-es3-property-literals"),
-    require("babel-plugin-transform-strict-mode"),
-    [
-      require("babel-plugin-transform-runtime"),
-      {
-        helpers: false,
-        polyfill: false,
-        regenerator: true,
-        moduleName: "babel-runtime"
-      }
-    ]
-  ]
+  mode: CONFIG.isProduction ? "production" : "none"
 };
 
 // 输出文件
@@ -95,7 +109,7 @@ class Module {
       const env = {};
       for (let key in process.env) {
         if (process.env.hasOwnProperty(key)) {
-          if (key.indexOf("WEBUILD_") >= 0 || key.indexOf("NODE_") >= 0) {
+          if (/WEBUILD_\w+/.test(key)) {
             env[key] = process.env[key];
           }
         }
