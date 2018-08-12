@@ -157,13 +157,10 @@ class Module {
 module.exports = function(moduleId) {
   const webpackModule = {
     ${this.modules
-      .map(file => {
+      .map((file, i) => {
+        const modulePath = utils.unixify(path.relative(CONFIG.paths.temp, file.path))
         return `
-    "${file.id}": function(){
-      return require("${utils.unixify(
-        path.relative(CONFIG.paths.temp, file.path)
-      )}")
-    }`;
+    "${file.id}": () => require("${modulePath}")`;
       })
       .join(",")}
   };
