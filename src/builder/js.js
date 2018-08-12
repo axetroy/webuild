@@ -20,7 +20,7 @@ async function webpack(webpackConfig) {
   return stats;
 }
 
-const SYNAX_PLUGINS = [
+const SYNTAX_PLUGINS = [
   require("@babel/plugin-proposal-class-properties"),
   [
     require("@babel/plugin-proposal-decorators"),
@@ -50,7 +50,7 @@ const BABEL_OPTIONS = {
   presets: [require("@babel/preset-flow"), require("@babel/preset-env")],
   plugins: [
     require("@babel/plugin-transform-strict-mode"),
-    ...SYNAX_PLUGINS,
+    ...SYNTAX_PLUGINS,
     [
       require("@babel/plugin-transform-runtime"),
       {
@@ -75,7 +75,7 @@ const WEBPACK_CONFIG = {
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
         options: {
-          plugins: SYNAX_PLUGINS
+          plugins: SYNTAX_PLUGINS
         }
       }
     ]
