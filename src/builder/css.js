@@ -4,7 +4,6 @@
 const path = require("path");
 const fs = require("fs-extra");
 const postcss = require("postcss");
-const precss = require("precss");
 const cssnano = require("cssnano");
 const Builder = require("../Builder");
 const CONFIG = require("../config")();
@@ -32,14 +31,16 @@ class CssBuilder extends Builder {
 
     await fs.ensureFile(distFilePath);
 
-    const result = await postcss(
-      [precss()].concat(
-        // 生产环境下压缩css
-        CONFIG.isProduction ? [cssnano({ preset: "default" })] : []
-      )
-    ).process(await fs.readFile(absFile, "utf8"), {
+    const processor = postcss([
+      CONFIG.isProduction ? cssnano({ preset: "default" }) : undefined
+    ].filter(v=>v))
+
+    const result = await processor.process(await fs.readFile(absFile, "utf8"), {
       from: absFile,
-      to: distFilePath
+      to: distFilePath,
+      map: {
+        inline: CONFIG.isProduction ? false : true
+      }
     });
 
     await fs.writeFile(distFilePath, result.css, "utf8");
