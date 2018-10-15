@@ -52,7 +52,7 @@ p
   .description("初始化一个新项目")
   .action(function(argv) {
     fs.copy(
-      path.join(paths.root, "template"),
+      path.join(__dirname, '..', "template"),
       path.join(process.cwd(), argv.name)
     );
   });
