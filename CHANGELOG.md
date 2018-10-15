@@ -1,3 +1,32 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/axetroy/webuild/compare/v0.3.9...v0.4.0) (2018-10-15)
+
+
+### Bug Fixes
+
+* **package:** update caporal to version 0.10.0 ([beeac10](https://github.com/axetroy/webuild/commit/beeac10))
+* **package:** update webpack to version 4.0.0 ([425a03e](https://github.com/axetroy/webuild/commit/425a03e))
+
+
+### Features
+
+* update deps ([45cbc58](https://github.com/axetroy/webuild/commit/45cbc58))
+* upgrade deps ([492729b](https://github.com/axetroy/webuild/commit/492729b))
+* upgrade webpack ([98a4953](https://github.com/axetroy/webuild/commit/98a4953))
+
+
+
+<a name="0.3.9"></a>
+## [0.3.9](https://github.com/axetroy/webuild/compare/v0.3.8...v0.3.9) (2018-02-05)
+
+
+### Bug Fixes
+
+* fix missing UglifyJsPlugin in production ([f97e373](https://github.com/axetroy/webuild/commit/f97e373))
+* 修复process对象获取不正确的问题 ([47a4816](https://github.com/axetroy/webuild/commit/47a4816))
+
+
+
 <a name="0.3.8"></a>
 ## [0.3.8](https://github.com/axetroy/webuild/compare/v0.3.7...v0.3.8) (2018-02-05)
 
@@ -7,6 +36,11 @@
 * fix missing error ([aee3a8c](https://github.com/axetroy/webuild/commit/aee3a8c))
 * fix npm script didn't run correct in windows ([91e19c0](https://github.com/axetroy/webuild/commit/91e19c0))
 * fix this.env have not been init before used ([c43823f](https://github.com/axetroy/webuild/commit/c43823f))
+
+
+### Features
+
+* always print build info ([971062b](https://github.com/axetroy/webuild/commit/971062b))
 
 
 
