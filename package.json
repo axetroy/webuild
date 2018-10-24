@@ -11,7 +11,9 @@
     "build:icehome": "rimraf ./dist && node ./bin/webuild build --src ./examples/icehome/src --output ./dist",
     "build:cnode": "rimraf ./dist && node ./bin/webuild build --src ./examples/cnode/src --output ./dist",
     "test": "rimraf ./dist && npm run build:official && npm run build:icehome && npm run build:cnode",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -61,12 +63,14 @@
     "postcss": "^7.0.5",
     "precss": "^3.1.2",
     "pretty-data": "^0.40.0",
-    "webpack": "^4.20.2"
+    "webpack": "^4.20.2",
+    "snyk": "^1.104.2"
   },
   "devDependencies": {
     "@types/node": "^10.11.7",
     "@types/webpack": "^4.4.16",
     "conventional-changelog-cli": "^2.0.5",
     "rimraf": "^2.6.2"
-  }
+  },
+  "snyk": true
 }
