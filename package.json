@@ -57,7 +57,7 @@
     "imagemin-mozjpeg": "^7.0.0",
     "imagemin-pngquant": "^6.0.0",
     "imagemin-svgo": "^7.0.0",
-    "imagemin-webp": "^4.1.0",
+    "imagemin-webp": "^5.0.0",
     "postcss": "^7.0.5",
     "precss": "^3.1.2",
     "pretty-data": "^0.40.0",
