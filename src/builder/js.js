@@ -21,6 +21,8 @@ async function webpack(webpackConfig) {
 }
 
 const SYNTAX_PLUGINS = [
+  require("@babel/plugin-proposal-optional-catch-binding"),
+  require("@babel/plugin-proposal-object-rest-spread"),
   require("@babel/plugin-proposal-class-properties"),
   [
     require("@babel/plugin-proposal-decorators"),
