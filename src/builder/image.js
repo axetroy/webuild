@@ -59,7 +59,7 @@ class ImageBuilder extends Builder {
     try {
       await imagemin([absFilePath], path.dirname(distFilePath), { plugins });
     } catch (err) {
-      // await fs.copy(absFilePath, distFilePath, { overwrite: true });
+      await fs.copy(absFilePath, distFilePath, { overwrite: true });
     }
   }
 }
