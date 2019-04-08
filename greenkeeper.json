@@ -1,0 +1,13 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "examples/cnode/package.json",
+        "examples/icehome/package.json",
+        "examples/official/package.json",
+        "package.json",
+        "template/package.json"
+      ]
+    }
+  }
+}
