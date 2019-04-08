@@ -10,7 +10,7 @@
   "author": "Axetroy",
   "license": "Apache",
   "devDependencies": {
-    "@axetroy/webuild": "^0.3.9"
+    "@axetroy/webuild": "^0.5.1"
   },
   "dependencies": {}
 }
