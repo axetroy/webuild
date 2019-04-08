@@ -128,4 +128,4 @@ $ webuild --help
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faxetroy%2Fwebuild?ref=badge_large) [![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/webuild.svg)](https://greenkeeper.io/)
