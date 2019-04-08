@@ -11,7 +11,7 @@
   "author": "Axetroy",
   "license": "Apache",
   "devDependencies": {
-    "@axetroy/webuild": "^0.0.1"
+    "@axetroy/webuild": "^0.5.1"
   },
   "dependencies": {
     "timeago.js": "^3.0.2",
