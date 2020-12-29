@@ -63,7 +63,7 @@
     "postcss": "^7.0.14",
     "pretty-data": "^0.40.0",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.29.0"
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
