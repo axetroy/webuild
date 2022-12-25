@@ -47,7 +47,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
     "@babel/runtime": "^7.3.1",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.2.4",
     "caporal": "^1.1.0",
     "chokidar": "^2.0.4",
     "cssnano": "^4.1.8",
@@ -63,7 +63,7 @@
     "postcss": "^7.0.14",
     "pretty-data": "^0.40.0",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.29.0"
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
